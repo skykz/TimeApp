@@ -1,0 +1,17 @@
+<vector android:height="24dp" android:viewportHeight="471"
+    android:viewportWidth="472" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#94b3bf" android:pathData="m8,403.5h32v64h-32zM8,403.5"/>
+    <path android:fillColor="#94b3bf" android:pathData="m440,403.5h32v64h-32zM440,403.5"/>
+    <path android:fillColor="#995f5b" android:pathData="m8,115.5h464v32h-464zM8,115.5"/>
+    <path android:fillColor="#cfdfe8" android:pathData="m168,67.5h128v48h-176c0,-26.508 21.492,-48 48,-48zM168,67.5"/>
+    <path android:fillColor="#cfdfe8" android:pathData="m168,323.5h128v48h-176c0,-26.508 21.492,-48 48,-48zM168,323.5"/>
+    <path android:fillColor="#ffd782" android:pathData="m440,3.5h32v112h-32zM440,3.5"/>
+    <path android:fillColor="#cfdfe8" android:pathData="m352,19.5h72c8.836,0 16,7.164 16,16v16c0,8.836 -7.164,16 -16,16h-72c-8.836,0 -16,-7.164 -16,-16v-16c0,-8.836 7.164,-16 16,-16zM352,19.5"/>
+    <path android:fillColor="#94b3bf" android:pathData="m296,67.5h144v48h-144zM296,67.5"/>
+    <path android:fillColor="#995f5b" android:pathData="m8,371.5h464v32h-464zM8,371.5"/>
+    <path android:fillColor="#ffd782" android:pathData="m440,259.5h32v112h-32zM440,259.5"/>
+    <path android:fillColor="#d3843d" android:pathData="m440,147.5h32v112h-32zM440,147.5"/>
+    <path android:fillColor="#cfdfe8" android:pathData="m352,275.5h72c8.836,0 16,7.164 16,16v16c0,8.836 -7.164,16 -16,16h-72c-8.836,0 -16,-7.164 -16,-16v-16c0,-8.836 7.164,-16 16,-16zM352,275.5"/>
+    <path android:fillColor="#94b3bf" android:pathData="m296,323.5h144v48h-144zM296,323.5"/>
+    <path android:fillColor="#d3843d" android:pathData="m120,43.5h-112c-4.418,0 -8,3.582 -8,8v352c0,4.418 3.582,8 8,8h112c4.418,0 8,-3.582 8,-8v-352c0,-4.418 -3.582,-8 -8,-8zM16,315.5h96v16h-96zM16,299.5v-16h96v16zM112,267.5h-96v-16h96zM16,235.5v-16h96v16zM112,203.5h-96v-16h96zM16,171.5v-16h96v16zM112,139.5h-96v-16h96zM16,107.5v-16h96v16zM16,347.5h96v16h-96zM16,59.5h96v16h-96zM112,395.5h-96v-16h96zM112,395.5"/>
+</vector>

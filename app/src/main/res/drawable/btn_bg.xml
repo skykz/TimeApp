@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:state_pressed="false">
+        <shape>
+
+            <gradient android:startColor="@color/splash_bk_main" android:endColor="@color/splash_bk_alternative" />
+            <stroke android:color="#2088F5" android:width="2dp"/>
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="@color/colorPrimary" />
+            <stroke android:color="@color/login_form_details_light" android:width="2dp"/>
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+</selector>

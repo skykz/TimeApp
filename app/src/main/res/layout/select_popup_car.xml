@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        style="?attr/listPopupWindowStyle"
+        android:layout_width="match_parent"
+        android:layout_height="491dp"
+        android:layout_gravity="center"
+        android:background="@drawable/background_shadow"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/close_layout"
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewCar"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:text="@string/carService"
+                android:textStyle="bold"
+                android:paddingStart="15dp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/txtclose"
+                android:layout_width="27dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/ic_close_popup"
+                android:gravity="center"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:textColor="@color/background"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/buttonCarService"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/carWash"
+                app:srcCompat="@drawable/ic_car_wash" />
+
+            <ImageButton
+                android:id="@+id/buttonBarber"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/carRepair"
+                app:srcCompat="@drawable/ic_lift" />
+
+            <ImageButton
+                android:id="@+id/buttonCarWash"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/carWheel"
+                app:srcCompat="@drawable/ic_wheel" />
+
+            <ImageButton
+                android:id="@+id/buttonStom"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/carSpray"
+                app:srcCompat="@drawable/ic_spray_gun" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="348dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/carWash"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/carRepair"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center|center_vertical"
+                android:text="@string/carWheel"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center|center_vertical"
+                android:text="@string/carSpray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/buttonCarService1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/carPart"
+                app:srcCompat="@drawable/ic_chassis" />
+
+            <ImageButton
+                android:id="@+id/buttonBarber1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/carTech"
+                app:srcCompat="@drawable/ic_document" />
+
+            <ImageButton
+                android:id="@+id/buttonCarWash1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/carMetre"
+                app:srcCompat="@drawable/ic_multimeter" />
+
+            <ImageButton
+                android:id="@+id/buttonStom1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/carComputer"
+                app:srcCompat="@drawable/ic_car_computer_diagnoz" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="347dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/carPart"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/carTech"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center"
+                android:text="@string/carMetre"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textMedicine1"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/carComputer"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="82dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/buttonCarAC"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                app:srcCompat="@drawable/ic_air_conditioni"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:contentDescription="@string/carAC" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/carAC"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        tools:context=".ui.MainActivity"
+        tools:showIn="@layout/app_bar_main"
+       >
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@color/splash_bk_main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicatorColor="#ffffff"
+            android:elevation="10dp"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextColor="@color/tab_gray">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/actual_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/actual" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/free_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/free" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/all_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all" />
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <!--<com.facebook.shimmer.ShimmerFrameLayout-->
+    <!--android:id="@+id/shimmer_view_container"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginTop="15dp"-->
+    <!--android:orientation="vertical"-->
+    <!--shimmer:duration="800">-->
+
+    <!--&lt;!&ndash; Adding 7 rows of placeholders &ndash;&gt;-->
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--<include layout="@layout/main_data_placeholder_layout" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--</com.facebook.shimmer.ShimmerFrameLayout>-->
+
+    <!--<ListView-->
+    <!--android:id="@+id/playlistDataLV"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:divider="#faf8f8"-->
+    <!--android:dividerHeight="2dp"-->
+    <!--android:paddingBottom="0dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/shimmer_view_container"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintHorizontal_bias="1.0"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:layout_constraintVertical_bias="0.0" />-->

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        style="?attr/listPopupWindowStyle"
+        android:layout_width="match_parent"
+        android:layout_height="491dp"
+        android:layout_gravity="center"
+        android:background="@drawable/background_shadow"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/close_layout"
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewMed"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:text="@string/med"
+                android:textStyle="bold"
+                android:paddingStart="15dp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/txtclose"
+                android:layout_width="27dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/ic_close_popup"
+                android:gravity="center"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:textColor="@color/background"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/buttonMedTooth"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/medTooth"
+                app:srcCompat="@drawable/ic_tooth" />
+
+            <ImageButton
+                android:id="@+id/buttonMedFlu"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/medFlu"
+                app:srcCompat="@drawable/ic_x_ray" />
+
+            <ImageButton
+                android:id="@+id/buttonCarWash"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/medGene"
+                app:srcCompat="@drawable/ic_gynecology" />
+
+            <ImageButton
+                android:id="@+id/buttonStom"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/medUrol"
+                app:srcCompat="@drawable/ic_kidneys" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="348dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/medTooth"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/medFlu"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center|center_vertical"
+                android:text="@string/medGene"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center|center_vertical"
+                android:text="@string/medUrol"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/buttonMedEye"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/medEye"
+                app:srcCompat="@drawable/ic_view" />
+
+            <ImageButton
+                android:id="@+id/buttonMedBaby"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/medBaby"
+                app:srcCompat="@drawable/ic_baby" />
+
+            <ImageButton
+                android:id="@+id/buttonMedHead"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+
+
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_background"
+                android:contentDescription="@string/medHead"
+                app:srcCompat="@drawable/ic_nasal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="257dp"
+            android:layout_height="43dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/medEye"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/medBaby"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center"
+                android:text="@string/medHead"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

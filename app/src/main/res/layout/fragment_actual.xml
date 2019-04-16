@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.ActualFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp">
+
+        <ImageButton
+            android:id="@+id/buttonCarService"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+
+            android:layout_margin="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/carService"
+            app:srcCompat="@drawable/ic_lift" />
+
+        <ImageButton
+            android:id="@+id/buttonCarWash"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/carWash"
+            app:srcCompat="@drawable/ic_car_wash" />
+
+        <ImageButton
+            android:id="@+id/buttonBarber"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/barberShop"
+            app:srcCompat="@drawable/ic_razor" />
+
+        <ImageButton
+            android:id="@+id/buttonStom"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/medicine"
+            app:srcCompat="@drawable/ic_saunaservice" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="356dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textCarService"
+            android:layout_width="9dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Автосервис"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textCarWash"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Автомойка"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textBarber"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="7dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center"
+            android:text="Барбер"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textMedicine"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Медицина"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+
+        android:layout_marginTop="-5dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/buttonMakeUp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/makeUp"
+            app:srcCompat="@drawable/ic_make_up" />
+
+        <ImageButton
+            android:id="@+id/buttonBowling"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/bowling"
+            app:srcCompat="@drawable/ic_bowling" />
+
+        <ImageButton
+            android:id="@+id/buttonPhotoStudio"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/photoStudio"
+            app:srcCompat="@drawable/ic_photo_camera" />
+
+        <ImageButton
+            android:id="@+id/buttonSalons"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/salons"
+            app:srcCompat="@drawable/ic_scissors" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="356dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textMakeUp"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Визажист"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textBowling"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Боулинг"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textCamera"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Фото студия"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textSalon"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Салоны"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="-5dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/buttonHostel"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/hostel"
+            app:srcCompat="@drawable/ic_hostel" />
+
+        <ImageButton
+            android:id="@+id/buttonShoesFix"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/repairShoes"
+            app:srcCompat="@drawable/ic_shoefix" />
+
+        <ImageButton
+            android:id="@+id/buttonNotarius"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/law"
+            app:srcCompat="@drawable/ic_libra" />
+
+        <ImageButton
+            android:id="@+id/buttonBilliard"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:layout_margin="15dp"
+            android:background="@drawable/ripple_background"
+            android:contentDescription="@string/billiard"
+            app:srcCompat="@drawable/ic_billiard" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="356dp"
+        android:layout_height="32dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textHotel"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Хостели"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textShoes"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Ремонт обуви"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textLaw"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Нотариус"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textBilliard"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Бильярд"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
+

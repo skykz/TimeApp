@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="10dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_3"
+        android:layout_width="170dp"
+        android:layout_height="32dp"
+
+        android:layout_marginTop="50dp"
+        android:text="TextView" />
+
+    <Button
+    android:id="@+id/button_order"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="603dp"
+    android:background="@drawable/bg_single_button"
+    android:text="Потвердить"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="44dp"
+        android:layout_height="32dp"
+
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/ic_phone" />
+
+    <TextView
+        android:id="@+id/text_1"
+        android:layout_width="169dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="50dp" />
+
+    <TextView
+        android:id="@+id/text_2"
+        android:layout_width="170dp"
+        android:layout_height="32dp"
+
+        android:layout_marginTop="100dp" />
+
+    <TextView
+        android:id="@+id/text_4"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="TextView" />
+
+
+    <ImageView
+        android:id="@+id/image_1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:id="@+id/text_5"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+</LinearLayout>
