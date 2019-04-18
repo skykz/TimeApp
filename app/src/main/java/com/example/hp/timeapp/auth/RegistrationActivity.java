@@ -2,11 +2,15 @@ package com.example.hp.timeapp.auth;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
+import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.util.Patterns;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -39,6 +43,8 @@ public class RegistrationActivity extends AppCompatActivity {
     @BindView(R.id.til_name) TextInputLayout tilName;
     @BindView(R.id.til_email) TextInputLayout tilEmail;
     @BindView(R.id.til_password) TextInputLayout tilPassword;
+    @BindView(R.id.form_container) LinearLayout container;
+    @BindView(R.id.loader) ProgressBar loader;
 
 
     ApiService service;
@@ -82,6 +88,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
         if (awesomeValidation.validate()) {
 
+            showLoading();
+
             call = service.register(name, email, password);
             call.enqueue(new Callback<AccessToken>() {
 
@@ -102,7 +110,10 @@ public class RegistrationActivity extends AppCompatActivity {
                     } else {
                         handleErrors(response.errorBody());
                     }
+
+                    showForm();
                 }
+
 
                 @Override
                 public void onFailure(Call<AccessToken> call, Throwable t) {
@@ -154,5 +165,17 @@ public class RegistrationActivity extends AppCompatActivity {
             call.cancel();
             call = null;
         }
+    }
+
+
+    private void showLoading(){
+        TransitionManager.beginDelayedTransition(container);
+        container.setVisibility(View.GONE);
+        loader.setVisibility(View.VISIBLE);
+    }
+    public void showForm(){
+        TransitionManager.beginDelayedTransition(container);
+        container.setVisibility(View.VISIBLE);
+        loader.setVisibility(View.GONE);
     }
 }

@@ -48,7 +48,7 @@
     <string name="free">свободные</string>
     <string name="all">все услуги</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="actual_fragment">Hello Actual fragment</string>
     <string name="free_fragment">Hello Free fragment</string>
     <string name="all_fragment">Hello All fragment</string>

@@ -16,6 +16,12 @@
         app:srcCompat="@drawable/time_white"
         android:contentDescription="TODO" />
 
+    <ProgressBar
+        android:id="@+id/loader"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:id="@+id/form_container"
         android:layout_width="match_parent"

@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import android.os.Handler;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -75,7 +76,7 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
 //        mShimmerViewContainer = findViewById(R.id.shimmer_view_container1);
 
-        toolbar = findViewById(R.id.toolbar_certain1);
+        toolbar = findViewById(R.id.toolbar1);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,7 +105,11 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
         viewPager = (ViewPager) findViewById(R.id.viewPager_slider);
 
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabDots);
+        tabLayout.setupWithViewPager(viewPager, true);
 
+
+        //getting single service data from server
         getOrganizationById();
     }
 
@@ -165,6 +170,7 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
                     TextView textView2 = findViewById(R.id.textView21);
                     textView2.setText(org.getName_of_organization());
+
 
                     HideLoading();
 

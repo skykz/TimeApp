@@ -38,12 +38,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-
     <!--this is the main content layout -->
     <include layout="@layout/content_main" />
-
-
 
 
     <!--&lt;!&ndash;this is the icon notification&ndash;&gt;-->
