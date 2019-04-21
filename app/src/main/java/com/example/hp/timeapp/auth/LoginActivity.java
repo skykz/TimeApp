@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
 
-
     @BindView(R.id.til_email)
     TextInputLayout tilEmail;
     @BindView(R.id.til_password)
@@ -75,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
 
 //        tokenManager.deleteToken();
         Log.d(TAG,"ACCESTOKEN" + tokenManager.getToken().getAccessToken());
-        Log.d(TAG,"TIIIIIIIIIIIIIME: " + tokenManager.getToken().getExpiresIn());
 
         apiService = RetrofitBuilder.createService(ApiService.class);
         validation = new AwesomeValidation(ValidationStyle.TEXT_INPUT_LAYOUT);
@@ -172,7 +170,6 @@ public class LoginActivity extends AppCompatActivity {
             {
                 tilPassword.setError(error.getValue().get(0));
             }
-
         }
     }
 

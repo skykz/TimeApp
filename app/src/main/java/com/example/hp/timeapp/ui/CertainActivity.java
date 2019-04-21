@@ -62,8 +62,6 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
     private PostListAdapter.OnNoteListener onNoteListener;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

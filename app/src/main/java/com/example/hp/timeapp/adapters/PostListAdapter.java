@@ -50,6 +50,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
         private ImageView image1;
         private TextView description;
         private TextView price;
+        private TextView rating;
         private TextView used_amount;
         private LikeButton likeButton;
 
@@ -63,7 +64,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
             description = itemView.findViewById(R.id.textView7);
             image = itemView.findViewById(R.id.imageView3);
             image1 = itemView.findViewById(R.id.imageView11);
-
+            rating = itemView.findViewById(R.id.text_rating);
             price = itemView.findViewById(R.id.textView6);
             ID = itemView.findViewById(R.id.id);
             used_amount = itemView.findViewById(R.id.txt_used_amount);
@@ -117,7 +118,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
         holder.description.setText(posts.getBody());
         holder.price.setText("Price: $" + posts.getPrice());
         holder.used_amount.setText(String.valueOf(posts.getUsed_by_people()));
-
+        holder.rating.setText(String.valueOf(posts.getRating()));
         //holder.timestamp.setText(recipe.getTimestamp());
 //
         Log.w(TAG,"Image is COOL");

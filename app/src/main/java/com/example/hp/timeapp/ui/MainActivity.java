@@ -16,8 +16,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import android.widget.Toast;
 
 
 import com.example.hp.timeapp.R;
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ApiService apiService;
     private TokenManager tokenManager;
     private Call<FreeServicesResponse> call;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,7 +129,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+//
+//        if (savedInstanceState == null) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HistoryFragment()).commit();
+//            navigationView.setCheckedItem(R.id.fragment_container);
+//        }
 
         tokenManager = TokenManager.getInstance(getSharedPreferences("preferences",MODE_PRIVATE));
 
@@ -134,6 +142,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
         apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class,tokenManager);
+
+
+
     }
 
 
@@ -184,28 +195,52 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_slideshow) {
-             intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_manage) {
-            Settings();
-        } else if (id == R.id.logout_menu) {newActivity();}
 
-         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (id == R.id.nav_history) {
+
+
+            // Handle the camera action
+        } else
+             if (id == R.id.nav_news)
+             {
+
+             }
+             else if (id == R.id.nav_help) {
+
+            Log.i("History", "FRAGMENT");
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HistoryFragment()).commit();
+
+        } else if (id == R.id.nav_settings) {
+            Settings();
+
+        } else if (id == R.id.logout_menu) {
+            Logout();
+        }
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
-    public void Auth(){
-         intent = new Intent(this,LoginActivity.class);
-        startActivity(intent);
+    // alert dialog to choose option
+    private boolean Alert(){
 
+        return false;
     }
 
+    public void Logout(){
 
-    public void LogOut(){
+
+        if (tokenManager.getToken().getAccessToken() != null)
+        {
+            tokenManager.deleteToken();
+            intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(),"Вы вышли!",Toast.LENGTH_SHORT).show();
+            finish();
+
+        }
     }
 
     public void Settings(){
@@ -217,28 +252,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStop() {
         super.onStop();
-
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-
-
     }
 }

@@ -114,7 +114,6 @@ public class RegistrationActivity extends AppCompatActivity {
                     showForm();
                 }
 
-
                 @Override
                 public void onFailure(Call<AccessToken> call, Throwable t) {
                     Log.w(TAG, "onFailure: " + t.getMessage());

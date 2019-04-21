@@ -29,12 +29,11 @@ private final String TAG = "SelectActivity";
     ProgressBar loader;
 
 
-
     @BindView(R.id.button_user)
     Button getButton_user;
-
-    private ApiService apiService;
-    private TokenManager tokenManager;
+//
+//    private ApiService apiService;
+//    private TokenManager tokenManager;
 
 
     @Override
@@ -70,7 +69,6 @@ private final String TAG = "SelectActivity";
         TransitionManager.beginDelayedTransition(container);
 //        container.setVisibility(View.GONE);
         loader.setVisibility(View.VISIBLE);
-
 
     }
 

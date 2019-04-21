@@ -3,9 +3,14 @@ package com.example.hp.timeapp.ui;
 
 import android.content.Intent;
 
+import android.os.Build;
 import android.os.Handler;
 
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
+import android.support.transition.TransitionManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 
 
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +32,8 @@ import com.example.hp.timeapp.R;
 import com.example.hp.timeapp.TokenManager;
 import com.example.hp.timeapp.adapters.CustomSwipeAdapter;
 
+import com.example.hp.timeapp.adapters.PageAdapter;
+import com.example.hp.timeapp.adapters.single_adapter.SingleAdapter;
 import com.example.hp.timeapp.auth.LoginActivity;
 
 import com.example.hp.timeapp.entities.GetServiceById;
@@ -37,6 +45,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,15 +75,31 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
             };
 
 
-    ViewPager viewPager;
-    ProgressBar progressBar;
+    ViewPager viewPager,viewPager1;
+//    ProgressBar progressBar;
+    LinearLayout bottomSheet;
+
+    @BindView(R.id.single_container)
+    LinearLayout container;
+
+    @BindView(R.id.loadingSingle)
+    ProgressBar loader;
+
+    @BindView(R.id.data_single)
+    LinearLayout formContainer;
+
+    BottomSheetBehavior bottomSheetBehavior;
+
+
+    private TabLayout tabLayout;
+    private TabItem tabActual;
+    private TabItem tabAll;
+    private SingleAdapter pageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_data);
-
-//        mShimmerViewContainer = findViewById(R.id.shimmer_view_container1);
 
         toolbar = findViewById(R.id.toolbar1);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -84,30 +109,64 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
             }
         });
 
-        progressBar = (ProgressBar) findViewById(R.id.loadingSingle);
-
 
         tokenManager = TokenManager.getInstance(getSharedPreferences("preferences",MODE_PRIVATE));
-
         if (tokenManager.getToken().getAccessToken() == null){
             startActivity(new Intent(SingleActivity.this, LoginActivity.class));
             finish();
         }
-
         apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class,tokenManager);
 
-//        recyclerView = findViewById(R.id.recycler_view1);
 
-//        LinearLayoutManager llm = new LinearLayoutManager(this);
-//        llm.setOrientation(LinearLayoutManager.VERTICAL);
-//        recyclerView.setLayoutManager(llm);
+//        viewPager1 = (ViewPager)findViewById(R.id.viewPager_slider);
 
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager_slider);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabDots);
-        tabLayout.setupWithViewPager(viewPager, true);
 
+
+        tabLayout = findViewById(R.id.tablayout_single);
+        tabActual = findViewById(R.id.tab_info);
+        tabAll = findViewById(R.id.tab_feedback);
+
+        viewPager = findViewById(R.id.viewSingle);
+
+        pageAdapter = new SingleAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+               @Override
+               public void onTabSelected(TabLayout.Tab tab) {
+                   viewPager.setCurrentItem(tab.getPosition());
+
+                   if (tab.getPosition() == 1) {
+
+                       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                           getWindow().setStatusBarColor(ContextCompat.getColor(SingleActivity.this, R.color.fragment1));
+
+                       }
+                   } else {
+
+                       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                           getWindow().setStatusBarColor(ContextCompat.getColor(SingleActivity.this, R.color.colorPrimaryDark));
+
+                       }
+                   }
+               }
+
+               @Override
+               public void onTabUnselected(TabLayout.Tab tab) {
+
+               }
+
+               @Override
+               public void onTabReselected(TabLayout.Tab tab) {
+
+               }
+
+           });
+
+        bottomSheet = (LinearLayout)findViewById(R.id.bottom_sheet_layout);
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
         //getting single service data from server
         getOrganizationById();
@@ -141,7 +200,7 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
     private void getOrganizationById() {
 
-        ShowLoading();
+//        ShowLoading();
 
         call = apiService.getServices(getIdOrganization());
         call.enqueue(new Callback<SingleOrganization>() {
@@ -157,7 +216,7 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 //                    mAdapter = new SingleItemAdapter(SingleActivity.this,org);
 
                     customSwipeAdapter = new CustomSwipeAdapter(SingleActivity.this, imageUrls);
-                    viewPager.setAdapter(customSwipeAdapter);
+//                    viewPager1.setAdapter(customSwipeAdapter);
 
                     TextView view = findViewById(R.id.rating_input);
                     view.setText(String.valueOf(org.getRating()));
@@ -172,7 +231,7 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
                     textView2.setText(org.getName_of_organization());
 
 
-                    HideLoading();
+//                    HideLoading();
 
                     Toast.makeText(getApplicationContext(), "Все успешно загружено", Toast.LENGTH_SHORT).show();
 
@@ -218,15 +277,21 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 //        mShimmerViewContainer.stopShimmer();
     }
 
-    private void ShowLoading(){
-
-        progressBar.setVisibility(View.VISIBLE);
-
-    }
-    private void HideLoading()
-    {
-        progressBar.setVisibility(View.GONE);
-    }
+//    private void ShowLoading(){
+//
+//        TransitionManager.beginDelayedTransition(container);
+//        formContainer.setVisibility(View.GONE);
+//        loader.setVisibility(View.VISIBLE);
+//
+//    }
+//    private void HideLoading()
+//    {
+//
+//        TransitionManager.beginDelayedTransition(container);
+//        formContainer.setVisibility(View.VISIBLE);
+//        loader.setVisibility(View.GONE);
+//
+//    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

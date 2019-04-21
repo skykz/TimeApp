@@ -6,8 +6,7 @@ public class FreeServicesResponse {
 
      private List<Organization> data;
 
-
-    public List<Organization> getData() {
+     public List<Organization> getData() {
         return data;
     }
 }

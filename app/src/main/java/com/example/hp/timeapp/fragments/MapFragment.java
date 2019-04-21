@@ -43,9 +43,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         View view = inflater.inflate(R.layout.activity_map, container, false);
         mMapView = view.findViewById(R.id.map);
 
-
         initGoogleMap(savedInstanceState);
-
 
         return view;
     }

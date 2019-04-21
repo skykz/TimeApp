@@ -48,6 +48,8 @@
     <string name="free">свободные</string>
     <string name="all">все услуги</string>
 
+    <string name="main_info">главная</string>
+    <string name="feedback">отзывы</string>
 
     <string name="actual_fragment">Hello Actual fragment</string>
     <string name="free_fragment">Hello Free fragment</string>
