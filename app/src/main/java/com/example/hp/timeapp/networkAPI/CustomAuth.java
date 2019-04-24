@@ -1,6 +1,6 @@
 package com.example.hp.timeapp.networkAPI;
 
-import android.util.Log;
+
 
 import com.example.hp.timeapp.TokenManager;
 import com.example.hp.timeapp.entities.AccessToken;
@@ -37,23 +37,20 @@ public class CustomAuth implements Authenticator {
 
 
     @Nullable
+    @Override
     public Request authenticate(Route route, Response response) throws IOException {
 
-//        if (responseCount(response) >= 5) {
-//            return null;
-//        }
+        if (responseCount(response) >= 5) {
+            return null;
+        }
 
         AccessToken token = tokenManager.getToken();
+
         ApiService apiService = RetrofitBuilder.createService(ApiService.class);
 
         Call<AccessToken> call = apiService.refresh(token.getRefreshToken());
         retrofit2.Response<AccessToken> res = call.execute();
 
-
-        if (res.body() != null) {
-
-            Log.d(TAG,"CUSTOMAUTH ---------------------------- " + tokenManager.getToken());
-        }
             if (res.isSuccessful()) {
                 AccessToken newToken = res.body();
                 tokenManager.saveToken(newToken);

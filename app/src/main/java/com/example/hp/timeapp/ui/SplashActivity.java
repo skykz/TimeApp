@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.hp.timeapp.auth.LoginActivity;
+import com.example.hp.timeapp.auth.PhoneLoginActivity;
 
 
 public class SplashActivity extends Activity {
@@ -24,7 +25,7 @@ public class SplashActivity extends Activity {
             Toast.makeText(getApplicationContext(),"Проблема с интернетом! Проверьте соединение с интернетом",Toast.LENGTH_LONG).show();
         }else {
 
-            Intent intent = new Intent(this, SelectActivity.class);
+            Intent intent = new Intent(this, PhoneLoginActivity.class);
             startActivity(intent);
             finish();
         }

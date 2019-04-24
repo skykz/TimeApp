@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "525279832184",
+    "firebase_url": "https://time-1551083943416.firebaseio.com",
+    "project_id": "time-1551083943416",
+    "storage_bucket": "time-1551083943416.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525279832184:android:37ca627f53419301",
+        "android_client_info": {
+          "package_name": "com.example.hp.timeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525279832184-k80acqurmvgr54r8g98eugg44tf4tfh5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hp.timeapp",
+            "certificate_hash": "2d01b0006ce2a3b61e694a73bec1ca4e3bdd0c1c"
+          }
+        },
+        {
+          "client_id": "525279832184-qqnm3t691ikngl4fn1r6o1ilavkecut5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjXc8q_AwwjGJIIObBMO8CTn5LR1MJzsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525279832184-qqnm3t691ikngl4fn1r6o1ilavkecut5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

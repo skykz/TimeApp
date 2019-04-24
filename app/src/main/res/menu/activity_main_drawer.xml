@@ -12,6 +12,11 @@
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_news"
             android:title="Наши новости" />
+
+        <item
+            android:id="@+id/nav_favorite"
+            android:icon="@drawable/ic_favorite_nav"
+            android:title="Избранные" />
         <item
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_customer_service"

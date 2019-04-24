@@ -26,8 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="140dp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.445"
@@ -64,8 +63,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/et_bg"
-                android:drawableStart="@drawable/ic_email"
-                android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="10dp"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress" />
@@ -79,19 +76,19 @@
             android:hint="@string/password"
             app:passwordToggleEnabled="true">
 
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+            <!--<android.support.design.widget.TextInputEditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
 
-                android:background="@drawable/et_bg"
-                android:drawableStart="@drawable/ic_locker"
-                android:drawableLeft="@drawable/ic_locker"
-                android:drawablePadding="10dp"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:maxLines="1" />
+                <!--android:background="@drawable/et_bg"-->
+                <!--android:drawableStart="@drawable/ic_locker"-->
+                <!--android:drawableLeft="@drawable/ic_locker"-->
+                <!--android:drawablePadding="10dp"-->
+                <!--android:imeOptions="actionDone"-->
+                <!--android:inputType="textPassword"-->
+                <!--android:maxLines="1" />-->
 
 
         </android.support.design.widget.TextInputLayout>
@@ -102,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@drawable/btn_bg"
+            android:background="@drawable/et_bg"
             android:text="@string/login"
             android:textColor="@color/tab_gray" />
 

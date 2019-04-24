@@ -71,11 +71,12 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         tokenManager = TokenManager.getInstance(getSharedPreferences("preferences",MODE_PRIVATE));
-
-//        tokenManager.deleteToken();
-        Log.d(TAG,"ACCESTOKEN" + tokenManager.getToken().getAccessToken());
+//
+////        tokenManager.deleteToken();
+//        Log.d(TAG,"ACCESTOKEN" + tokenManager.getToken().getAccessToken());
 
         apiService = RetrofitBuilder.createService(ApiService.class);
+
         validation = new AwesomeValidation(ValidationStyle.TEXT_INPUT_LAYOUT);
 
 
@@ -135,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                             handleErrors(response.errorBody());
                         }
                         if (response.code() == 401) {
-                            ApiError apiError = convertErrors(response.errorBody());
+                            ApiError apiError = Utils.convertErrors(response.errorBody());
                             Toast.makeText(LoginActivity.this, apiError.getMessage(), Toast.LENGTH_LONG).show();
 
                         }
@@ -181,6 +182,7 @@ public class LoginActivity extends AppCompatActivity {
             call.cancel();
             call = null;
         }
+
     }
 
 
