@@ -20,7 +20,8 @@
 
     <color name="colorPrim">#3F51B5</color>
     <color name="login_form_details">#ccffffff</color>
-    <color name="login_form_details_light">#a8adf4bb</color>
+    <color name="login_form_details_light">#A84CCA5D</color>
+    <color name="login_bg_warning">#A8458EC7</color>
     <color name="login_form_details_medium">#014dc7</color> <!-- login text -->
     <color name="login_form_button">#e4eae7</color>
 

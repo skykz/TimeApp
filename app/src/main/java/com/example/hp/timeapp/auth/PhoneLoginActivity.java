@@ -1,45 +1,36 @@
 package com.example.hp.timeapp.auth;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
+
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
+
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.example.hp.timeapp.R;
+import com.example.hp.timeapp.settings.PrefixEditText;
+import com.example.hp.timeapp.ui.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -47,60 +38,85 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import static android.Manifest.permission.READ_CONTACTS;
+import static com.example.hp.timeapp.util.Constants.USER_DATA;
 
-/**
- * A login screen that offers login via email/password.
- */
-public class PhoneLoginActivity extends AppCompatActivity{
+public class PhoneLoginActivity extends AppCompatActivity {
 
     private static final String TAG = "PhoneActivity";
 
-
     // UI references.
     private String phoneVerificationId;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
-            verificationCallbacks;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks verificationCallbacks;
     private PhoneAuthProvider.ForceResendingToken resendToken;
 
     private FirebaseAuth fbAuth;
 
-
-    private EditText phoneText;
+    private ProgressDialog dialog;
+    private PrefixEditText phoneText;
     private EditText codeText;
     private Button verifyButton;
-    private Button sendButton;
+//    private Button sendButton;
     private Button resendButton;
-    private Button signoutButton;
+//    private Button signoutButton;
     private TextView statusText;
+
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_login);
+
+
         // Set up the login form.
-        phoneText = (EditText) findViewById(R.id.phoneText);
-//        codeText = (EditText) findViewById(R.id.codeText);
-//        verifyButton = (Button) findViewById(R.id.verifyButton);
-        sendButton = (Button) findViewById(R.id.sendButton);
-//        resendButton = (Button) findViewById(R.id.resendButton);
+//        phoneText = (PrefixEditText) findViewById(R.id.phoneText);
+        codeText = (EditText) findViewById(R.id.codeText);
+        verifyButton = (Button) findViewById(R.id.verifyButton);
+//        sendButton = (Button) findViewById(R.id.sendButton);
+        resendButton = (Button) findViewById(R.id.resendButton);
 //        signoutButton = (Button) findViewById(R.id.signoutButton);
         statusText = (TextView) findViewById(R.id.statusText);
 
-//        verifyButton.setEnabled(false);
-//        resendButton.setEnabled(false);
+
+
+        verifyButton.setEnabled(false);
+        //77752416951
+        resendButton.setEnabled(false);
 //        signoutButton.setEnabled(false);
-//        statusText.setText("Signed Out");
 
-        phoneText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
-        
         fbAuth = FirebaseAuth.getInstance();
+        sendCode();
+        countDown();
 
+        FirebaseUser firebaseUser = fbAuth.getCurrentUser();
+        sharedPreferences  = getSharedPreferences(USER_DATA, Context.MODE_PRIVATE);
+
+//        fbAuth.
     }
-    public void sendCode(View view) {
 
-        String phoneNumber = phoneText.getText().toString();
+
+    public void countDown(){
+
+       new CountDownTimer(60000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                statusText.setText("Вы получите код в течении 0:" + millisUntilFinished / 1000 + "сек.");
+            }
+
+            public void onFinish() {
+                statusText.setText("Если не получили код, повторите еще раз!");
+            }
+        }.start();
+    }
+
+    public void sendCode() {
+
+        String phone = getIntent().getStringExtra("PHONE_NUMBER");
+        String phoneNumber = phone;
+
+        Log.d(TAG,"Number is " + phoneNumber);
 
         setUpVerificatonCallbacks();
 
@@ -115,19 +131,27 @@ public class PhoneLoginActivity extends AppCompatActivity{
 
     private void setUpVerificatonCallbacks() {
 
-        verificationCallbacks =
-                new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        verificationCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
                     @Override
                     public void onVerificationCompleted(
                             PhoneAuthCredential credential) {
 
 //                        signoutButton.setEnabled(true);
-                        statusText.setText("Signed In");
-//                        resendButton.setEnabled(false);
-//                        verifyButton.setEnabled(false);
-//                        codeText.setText("");
+
+
+                        dialog = ProgressDialog.show(PhoneLoginActivity.this, "Авторизация",
+                                "Загрузка...", true);
+
+
+                        resendButton.setEnabled(false);
+                        verifyButton.setEnabled(false);
+                        codeText.setText("");
                         signInWithPhoneAuthCredential(credential);
+
+                        Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
 
                     @Override
@@ -144,18 +168,18 @@ public class PhoneLoginActivity extends AppCompatActivity{
                     }
 
                     @Override
-                    public void onCodeSent(String verificationId,
-                                           PhoneAuthProvider.ForceResendingToken token) {
+                    public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
 
                         phoneVerificationId = verificationId;
                         resendToken = token;
 
-//                        verifyButton.setEnabled(true);
-                        sendButton.setEnabled(false);
-//                        resendButton.setEnabled(true);
+                        verifyButton.setEnabled(true);
+//                        sendButton.setEnabled(false);
+                        resendButton.setEnabled(true);
                     }
                 };
     }
+
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         fbAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -163,25 +187,52 @@ public class PhoneLoginActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 //                            signoutButton.setEnabled(true);
-//                            codeText.setText("");
-                            statusText.setText("Signed In");
-//                            resendButton.setEnabled(false);
-//                            verifyButton.setEnabled(false);
+                            codeText.setText("");
+//                            statusText.setText("Signed In");
+                            resendButton.setEnabled(false);
+                            verifyButton.setEnabled(false);
+
+
+                            // getting user from a fire base server
                             FirebaseUser user = task.getResult().getUser();
+
+                            Log.d(TAG,"FIRE BASE NAme " + user);
+                            Log.d(TAG,"FIRE BASE NAme " + user.getUid());
+                            Log.d(TAG,"FIRE BASE Number " + user.getPhoneNumber());
+                            Log.d(TAG,"FIRE BASE Token " + user.getIdToken(true));
+                            Log.d(TAG,"FIRE BASE Provide " + user.getProviderId());
+
+
+                            saveData(user.getUid(),user.getPhoneNumber());
 
                         } else {
                             if (task.getException() instanceof
                                     FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
+
                             }
                         }
                     }
                 });
     }
 
+    void saveData(String user_uid,String phoneNumber) {
+        SharedPreferences.Editor sPref = sharedPreferences.edit();
+
+        sPref.putString("user_uid", user_uid);
+        sPref.putString("user_phone_number",phoneNumber);
+        sPref.commit();
+
+        Toast.makeText(this, "USer data saved", Toast.LENGTH_SHORT).show();
+    }
+
+
+
     public void resendCode(View view) {
 
         String phoneNumber = phoneText.getText().toString();
+
+//        countDown();//again calling count down function for 60 sec
 
         setUpVerificatonCallbacks();
 
@@ -194,20 +245,22 @@ public class PhoneLoginActivity extends AppCompatActivity{
                 resendToken);
     }
 
-    public void signOut(View view) {
-        fbAuth.signOut();
-//        statusText.setText("Signed Out");
-//        signoutButton.setEnabled(false);
-        sendButton.setEnabled(true);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // destroy dialog loading bar
+//        dialog.cancel();
+        //destroy counter
+//        countDownTimer.cancel();
+        dialog.dismiss();
     }
-
 
     public void verifyCode(View view) {
 
         String code = codeText.getText().toString();
 
-        PhoneAuthCredential credential =
-                PhoneAuthProvider.getCredential(phoneVerificationId, code);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(phoneVerificationId, code);
+
         signInWithPhoneAuthCredential(credential);
     }
 }

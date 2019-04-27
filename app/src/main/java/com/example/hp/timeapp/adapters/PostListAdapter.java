@@ -95,8 +95,6 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
 
         final Organization posts = postList.get(position);
 
-
-
         holder.likeButton.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
@@ -138,10 +136,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
 
 
     public interface OnNoteListener{
-
         void onNoteClick(int position);
-
-
     }
 
 }

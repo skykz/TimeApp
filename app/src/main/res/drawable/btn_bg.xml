@@ -3,17 +3,8 @@
     <item android:state_pressed="false">
         <shape>
 
-            <gradient android:startColor="@color/splash_bk_main" android:endColor="@color/splash_bk_alternative" />
+            <gradient android:startColor="@color/splash_bk_alternative" android:endColor="@color/splash_bk_alternative" />
             <stroke android:color="#2088F5" android:width="2dp"/>
-            <corners android:radius="10dp" />
-        </shape>
-    </item>
-
-    <item>
-        <shape>
-            <solid android:color="@color/colorPrimary" />
-            <stroke android:color="@color/login_form_details_light" android:width="2dp"/>
-            <corners android:radius="10dp" />
         </shape>
     </item>
 </selector>

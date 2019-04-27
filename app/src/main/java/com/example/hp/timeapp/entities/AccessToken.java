@@ -34,7 +34,6 @@ public class AccessToken {
 
     public String getTokenType() {
         return tokenType;
-
     }
 
     public int getExpiresIn() {

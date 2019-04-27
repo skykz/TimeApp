@@ -43,7 +43,7 @@ import static com.example.hp.timeapp.util.Constants.PERMISSIONS_REQUEST_ACCESS_F
 import static com.example.hp.timeapp.util.Constants.PERMISSIONS_REQUEST_ENABLE_GPS;
 
 
-public class MapActivity extends AppCompatActivity implements View.OnClickListener {
+public class MapActivity extends AppCompatActivity {
 
     //static constant variables
     private static final String TAG = "MapActivity";
@@ -52,13 +52,8 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
     private static final int LOCATION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
 
-    //widgets
-
-
     //variables
     private boolean mLocationPermissionGranted = false;
-
-
     private Toolbar toolbar;
 
     @Override
@@ -67,20 +62,24 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_map);
 
         toolbar = findViewById(R.id.toolbar_map);
-        toolbar.setOnClickListener(MapActivity.this);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 //        editSearch = (EditText) findViewById(R.id.input_search);
 
-       checkMapServices();
+         checkMapServices();
 
         Fragment fragment = new MapFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.map, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
 
 
-
     }
-
 
     //checking google map services
     private boolean checkMapServices(){
@@ -95,7 +94,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
     //alert message from google services
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Пожайлуйста, Включите GPS для корректной работы. Согласны?")
+        builder.setMessage("Пожайлуйста, Включите GPS для корректной работы.")
                 .setCancelable(false)
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
@@ -182,7 +181,6 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ENABLE_GPS: {
                 if(mLocationPermissionGranted){
-                    //
                     Intent intent = new Intent(this, MapActivity.class);
                     startActivity(intent);
                 }
@@ -191,11 +189,6 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
                 }
             }
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        finish();
     }
 
 }

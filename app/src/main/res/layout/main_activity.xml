@@ -14,13 +14,26 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="650px"
+        android:layout_width="750px"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:scrollbarFadeDuration="700"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer" >
+
+        <Button
+            android:id="@+id/btn_sing_in_business"
+            android:drawableRight="@drawable/ic_arrow_right"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Войти как специалист"
+
+            android:layout_gravity="bottom"
+            android:textColor="#fff"
+            android:background="@drawable/btn_bg"
+            />
+    </android.support.design.widget.NavigationView>
 
 
 </android.support.v4.widget.DrawerLayout>

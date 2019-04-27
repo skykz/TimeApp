@@ -40,12 +40,16 @@
         <!--</menu>-->
     <!--</item>-->
 
-    <item android:title="Authorization">
+    <item android:title="Аккаунт">
         <menu>
             <item
-                android:id="@+id/logout_menu"
-                android:icon="@drawable/ic_logout"
-                android:title="Выйти" />
+                android:id="@+id/profile"
+                android:icon="@drawable/ic_account"
+                android:title="Личный кабинет" />
+            <!--<item-->
+                <!--android:id="@+id/logout_menu"-->
+                <!--android:icon="@drawable/ic_logout"-->
+                <!--android:title="Выйти" />-->
         </menu>
     </item>
 

@@ -132,13 +132,6 @@
                 android:layout_marginLeft="5dp"
                 android:text="TextView" />
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="TextView" />
-
         </LinearLayout>
 
     </LinearLayout>

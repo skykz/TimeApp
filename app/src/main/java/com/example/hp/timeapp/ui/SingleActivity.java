@@ -36,11 +36,16 @@ import com.example.hp.timeapp.adapters.PageAdapter;
 import com.example.hp.timeapp.adapters.single_adapter.SingleAdapter;
 import com.example.hp.timeapp.auth.LoginActivity;
 
+import com.example.hp.timeapp.auth.NumberActivity;
 import com.example.hp.timeapp.entities.GetServiceById;
 import com.example.hp.timeapp.entities.SingleOrganization;
 import com.example.hp.timeapp.networkAPI.ApiService;
 import com.example.hp.timeapp.networkAPI.RetrofitBuilder;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 
 
 import java.util.List;
@@ -54,15 +59,12 @@ import retrofit2.Response;
 public class SingleActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     private final String TAG = "SingleActivity";
 
-    private ShimmerFrameLayout mShimmerViewContainer;
     private ApiService apiService;
     private TokenManager tokenManager;
 
     private Toolbar toolbar;
     private Call<SingleOrganization> call;
 
-//    private RecyclerView recyclerView;
-//    private SingleItemAdapter mAdapter;
     private CustomSwipeAdapter customSwipeAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -75,7 +77,7 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
             };
 
 
-    ViewPager viewPager,viewPager1;
+    ViewPager viewPager;
 //    ProgressBar progressBar;
     LinearLayout bottomSheet;
 
@@ -96,6 +98,11 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
     private TabItem tabAll;
     private SingleAdapter pageAdapter;
 
+    private FirebaseAuth fbAuth;
+    private FirebaseUser user;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,20 +116,17 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
             }
         });
 
+        fbAuth = FirebaseAuth.getInstance();
+        user = fbAuth.getCurrentUser();
 
-        tokenManager = TokenManager.getInstance(getSharedPreferences("preferences",MODE_PRIVATE));
-        if (tokenManager.getToken().getAccessToken() == null){
-            startActivity(new Intent(SingleActivity.this, LoginActivity.class));
+
+        if (user.getUid() == null){
+            startActivity(new Intent(SingleActivity.this, NumberActivity.class));
             finish();
         }
-        apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class,tokenManager);
 
 
-//        viewPager1 = (ViewPager)findViewById(R.id.viewPager_slider);
-
-
-
-
+        apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class);
 
         tabLayout = findViewById(R.id.tablayout_single);
         tabActual = findViewById(R.id.tab_info);
@@ -167,6 +171,10 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
         bottomSheet = (LinearLayout)findViewById(R.id.bottom_sheet_layout);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+
+
+        Toast.makeText(getApplicationContext(),"Current user " + fbAuth.getCurrentUser(),Toast.LENGTH_SHORT).show();
 
         //getting single service data from server
         getOrganizationById();
@@ -245,11 +253,8 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
             @Override
             public void onFailure(Call<SingleOrganization> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"Ошибка " + t.getMessage(),Toast.LENGTH_SHORT).show();
 
-                Log.w(TAG,"onFailure: " + t.getMessage());
-                Log.w(TAG,"AAAAAA: " + tokenManager.getToken());
-
-                tokenManager.deleteToken();
             }
         });
     }

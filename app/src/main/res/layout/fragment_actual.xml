@@ -45,7 +45,7 @@
             android:layout_margin="15dp"
             android:background="@drawable/ripple_background"
             android:contentDescription="@string/barberShop"
-            app:srcCompat="@drawable/ic_razor" />
+            app:srcCompat="@drawable/ic_barber" />
 
         <ImageButton
             android:id="@+id/buttonStom"

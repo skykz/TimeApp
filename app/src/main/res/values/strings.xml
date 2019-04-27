@@ -33,7 +33,7 @@
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_email">Неправильный формат номера</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
@@ -49,6 +49,8 @@
     <string name="all">все услуги</string>
 
     <string name="main_info">главная</string>
+    <string name="privacy_policy">Нажимая ДАЛЕЕ , Вы соглашаетесь с правилами сервиса.</string>
+    <string name="attention_text">Номер нужен для проверки, что вы не робот. Его не увидят специалисты без вашего разрешения.</string>
     <string name="feedback">отзывы</string>
 
     <string name="actual_fragment">Hello Actual fragment</string>
@@ -300,6 +302,17 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_phone_login">Sign in</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+
+
+    <string name="transition_arrow">transition_arrow</string>
+    <string name="transition_tvMoving">transition_tvMoving</string>
+    <string name="transition_ivFlag">transition_ivFlag</string>
+    <string name="transition_tvCode">transition_tvCode</string>
+    <string name="transition_tvPhoneNo">transition_tvPhoneNo</string>
+    <string name="transition_llPhone">transition_llPhone</string>
+
+    <string name="enter_no">Enter your mobile number</string>
 
 
 </resources>

@@ -28,7 +28,7 @@ public class RetrofitBuilder {
     private static OkHttpClient buildClient(){
 
 
-        OkHttpClient.Builder builder = new OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS)
+        OkHttpClient.Builder builder = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS)
                 .addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
@@ -66,7 +66,7 @@ public class RetrofitBuilder {
         return retrofit.create(service);
     }
 
-    public static <T> T createServiceWithAuth(Class <T> service, final TokenManager tokenManager)
+    public static <T> T createServiceWithAuth(Class <T> service)
     {
         OkHttpClient newClient = client.newBuilder().addInterceptor(new Interceptor() {
             @Override
@@ -76,16 +76,16 @@ public class RetrofitBuilder {
 
                 Request.Builder builder = request.newBuilder();
 
-                if (tokenManager.getToken().getAccessToken() != null)
-                {
-                    builder.addHeader("Authorization","Bearer " + tokenManager.getToken().getAccessToken());
-                }
+//                if (tokenManager.getToken().getAccessToken() != null)
+//                {
+//                    builder.addHeader("Authorization","Bearer " + tokenManager.getToken().getAccessToken());
+//                }
 
                 request = builder.build();
                 return chain.proceed(request);
 
             }
-        }).authenticator(CustomAuth.getInstance(tokenManager)).build();
+        }).build();
 
         Retrofit newRetrofit = retrofit.newBuilder().client(newClient).build();
         return  newRetrofit.create(service);
@@ -95,7 +95,5 @@ public class RetrofitBuilder {
     public static Retrofit getRetrofit(){
         return retrofit;
     }
-
-
 
 }

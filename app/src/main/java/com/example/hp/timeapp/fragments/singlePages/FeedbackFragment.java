@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.example.hp.timeapp.R;
@@ -42,7 +43,7 @@ public class FeedbackFragment extends Fragment {
     private List<Organization> lister;
 
     private ApiService apiService;
-    private TokenManager tokenManager;
+
 
     private final String TAG = "FeedbackFragment";
 
@@ -61,13 +62,10 @@ public class FeedbackFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
-        tokenManager = TokenManager.getInstance(getActivity().getSharedPreferences("preferences", MODE_PRIVATE));
-
-
-        apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class, tokenManager);
+        apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class);
 
 
+        //loading feedback from server
         LoadData();
 
         return view;
@@ -88,7 +86,6 @@ public class FeedbackFragment extends Fragment {
             public void onResponse(Call<FreeServicesResponse> call, Response<FreeServicesResponse> response) {
 
                 Log.w(TAG, "onResponse: " + response);
-                Log.d(TAG, "onTokenManager: -------------" + tokenManager.getToken().toString());
 
                 if (response.isSuccessful()) {
                     lister = response.body().getData();
@@ -105,13 +102,18 @@ public class FeedbackFragment extends Fragment {
 
             @Override
             public void onFailure(Call<FreeServicesResponse> call, Throwable t) {
-                Log.w(TAG, "onFailure: " + t.getMessage());
-                Log.w(TAG, "AAAAAA: " + tokenManager.getToken());
+                Toast.makeText(getContext(),"Ошибка " + t.getMessage(),Toast.LENGTH_SHORT).show();
 
-                tokenManager.deleteToken();
 //                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (context != null)
+            context = null;
+    }
 }

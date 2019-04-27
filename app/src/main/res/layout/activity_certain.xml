@@ -11,27 +11,27 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar_certain"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="50dp"
         android:background="?attr/colorPrimary"
         android:elevation="5dp"
-        app:layout_scrollFlags="scroll|enterAlways"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_scrollFlags="scroll|enterAlways"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        app:popupTheme="@style/AppTheme.PopupOverlay" >
+        app:popupTheme="@style/AppTheme.PopupOverlay">
 
         <ImageButton
             android:id="@+id/map_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="270dp"
             android:layout_marginLeft="270dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            app:srcCompat="@drawable/ic_locationicon"
-            android:layout_marginStart="270dp"
-            android:contentDescription="@string/location_icon" />
+            android:contentDescription="@string/location_icon"
+            app:srcCompat="@drawable/ic_locationicon" />
 
     </android.support.v7.widget.Toolbar>
 

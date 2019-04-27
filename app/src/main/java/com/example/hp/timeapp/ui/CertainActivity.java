@@ -31,6 +31,7 @@ import com.example.hp.timeapp.googleMaps.MapActivity;
 import com.example.hp.timeapp.networkAPI.ApiService;
 import com.example.hp.timeapp.networkAPI.RetrofitBuilder;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 import java.util.List;
@@ -54,9 +55,10 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private ApiService apiService;
-    private TokenManager tokenManager;
     private Call<FreeServicesResponse> call;
     private List<Organization> lister;
+    private FirebaseAuth fbAuth;
+
 
 
     private PostListAdapter.OnNoteListener onNoteListener;
@@ -68,20 +70,16 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
         setContentView(R.layout.activity_certain);
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
 
-            tokenManager = TokenManager.getInstance(getSharedPreferences("preferences", MODE_PRIVATE));
-
-            if (tokenManager.getToken() == null) {
-                startActivity(new Intent(CertainActivity.this, LoginActivity.class));
-                finish();
-            }
-
-            apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class, tokenManager);
+            apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class);
 
             recyclerView = findViewById(R.id.recycler_view);
+
             recyclerView.setHasFixedSize(true);
+
             LinearLayoutManager llm = new LinearLayoutManager(this);
             llm.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(llm);
+
 
             toolbar = findViewById(R.id.toolbar_certain);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -90,6 +88,7 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
                     finish();
                 }
             });
+
 
             getListOfOrganization();
 
@@ -111,9 +110,8 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
             @Override
             public void run() {
 
-
-
                 getListOfOrganization();
+
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, 1300);
@@ -143,7 +141,6 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
             public void onResponse(Call<FreeServicesResponse> call, Response<FreeServicesResponse> response) {
 
                 Log.w(TAG,"onResponse: " + response);
-                Log.d(TAG,"onTokenManager: -------------" + tokenManager.getToken().toString());
 
                 if (response.isSuccessful())
                 {
@@ -162,6 +159,7 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
                         }
                     });
 
+
                     mAdapter.notifyDataSetChanged();
                     mShimmerViewContainer.stopShimmer();
                     mShimmerViewContainer.setVisibility(View.GONE);
@@ -173,19 +171,13 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
                     Toast.makeText(getApplicationContext(),"Все успешно загружено",Toast.LENGTH_SHORT).show();
 
                 }else {
-                    Toast.makeText(getApplicationContext(),"Не могу загрузить данные" + tokenManager.getToken(),Toast.LENGTH_LONG).show();
-                        tokenManager.deleteToken();
-                        startActivity(new Intent(CertainActivity.this, LoginActivity.class));
-                        finish();
+                    Toast.makeText(getApplicationContext(),"Не могу загрузить данные" + fbAuth.getAccessToken(true).getResult().getToken(),Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<FreeServicesResponse> call, Throwable t) {
                 Log.w(TAG,"onFailure: " + t.getMessage());
-                Log.w(TAG,"AAAAAA: " + tokenManager.getToken());
-
-                tokenManager.deleteToken();
 //                swipeRefreshLayout.setRefreshing(false);
             }
         });

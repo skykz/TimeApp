@@ -1,7 +1,10 @@
 package com.example.hp.timeapp.ui;
 
+import android.content.Context;
 import android.content.Intent;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -20,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
 import android.widget.Toast;
 
 
@@ -29,15 +33,19 @@ import com.example.hp.timeapp.adapters.PageAdapter;
 import com.example.hp.timeapp.auth.LoginActivity;
 
 
+import com.example.hp.timeapp.auth.NumberActivity;
 import com.example.hp.timeapp.entities.FreeServicesResponse;
 import com.example.hp.timeapp.networkAPI.ApiService;
-import com.example.hp.timeapp.networkAPI.RetrofitBuilder;
 import com.example.hp.timeapp.settings.SettingsActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
+
+import static com.example.hp.timeapp.util.Constants.USER_DATA;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,26 +61,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected ActionBarDrawerToggle toggle;
 
     private NavigationView navigationView;
+//    private SharedPreferences sPref;
     public MenuItem menuItem;
     private Intent intent;
     private MaterialSearchView materialSearchView;
 
-    private ApiService apiService;
-    private TokenManager tokenManager;
-    private Call<FreeServicesResponse> call;
+//    private ApiService apiService;
+//    private TokenManager tokenManager;
+//    private Call<FreeServicesResponse> call;
+
+    SharedPreferences sharedPreferences;
+    private FirebaseAuth fbAuth;
+
+    private SweetAlertDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             toolbar.setLogo(R.drawable.time_white);
         }
-
 
         //material search views
         materialSearchView = findViewById(R.id.search_view);
@@ -118,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onTabReselected(TabLayout.Tab tab) { }
         });
 
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.setDrawerIndicatorEnabled(true);
@@ -129,32 +140,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-//
-//        if (savedInstanceState == null) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HistoryFragment()).commit();
-//            navigationView.setCheckedItem(R.id.fragment_container);
-//        }
-
-        tokenManager = TokenManager.getInstance(getSharedPreferences("preferences",MODE_PRIVATE));
-
-        if (tokenManager.getToken() == null){
-            startActivity(new Intent(MainActivity.this,LoginActivity.class));
-            finish();
-        }
-        apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class,tokenManager);
 
 
+        fbAuth = FirebaseAuth.getInstance();
+
+        sharedPreferences  = getSharedPreferences(USER_DATA, Context.MODE_PRIVATE);
+
+
+        Toast.makeText(getBaseContext(),"User name is " + sharedPreferences.getString("first_name",null),Toast.LENGTH_SHORT).show();
 
     }
 
 
-    @OnClick(R.id.buttonCarService)
-    void newActivity(){
 
-        intent = new Intent(this, SingleActivity.class);
-        startActivity(intent);
-
-    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -198,7 +196,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_history) {
 
-
             // Handle the camera action
         } else
              if (id == R.id.nav_news)
@@ -213,9 +210,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_settings) {
             Settings();
 
-        } else if (id == R.id.logout_menu) {
-            Logout();
-        }
+        } else if (id == R.id.profile) {
+
+                 Intent intent = new Intent(this,ProfileActivity.class);
+                 startActivity(intent);
+
+             }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -223,24 +223,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    // alert dialog to choose option
-    private boolean Alert(){
+    void removeData(){
+        SharedPreferences.Editor sPref = sharedPreferences.edit();
 
-        return false;
+        sPref.remove("user_uid");
+        sPref.remove("user_phone_number");
+        fbAuth.signOut();
     }
 
-    public void Logout(){
+    void getData(){
 
+        sharedPreferences = getSharedPreferences(USER_DATA,MODE_PRIVATE);
+        if (sharedPreferences.contains("user_uid")){
 
-        if (tokenManager.getToken().getAccessToken() != null)
-        {
-            tokenManager.deleteToken();
-            intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
-            Toast.makeText(getApplicationContext(),"Вы вышли!",Toast.LENGTH_SHORT).show();
-            finish();
-
+            String user_uid = sharedPreferences.getString("user_uid",null);
         }
+        if (sharedPreferences.contains("user_phone_number")){
+            String user_phone_number = sharedPreferences.getString("user_phone_number",null);
+        }
+    }
+
+
+    public void Logout(){
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Вы действительно хотите выйти?")
+                .setContentText("Вы можете авторизоваться в любое время!")
+                .setConfirmText("Да,выйти")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+//                        sDialog.dismissWithAnimation();
+                        action_logout();
+                    }
+                })
+                .setCancelButton("Отмена", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                    }
+                })
+                .show();
+    }
+
+    public void action_logout(){
+        removeData();
+
+        intent = new Intent(this, NumberActivity.class);
+        startActivity(intent);
+        Toast.makeText(getApplicationContext(),"Вы вышли!",Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     public void Settings(){
@@ -253,7 +284,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onStop() {
         super.onStop();
     }
-
 
     @Override
     protected void onPause() {
@@ -268,5 +298,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+//        if (pDialog != null)
+//            pDialog =null;
     }
 }
