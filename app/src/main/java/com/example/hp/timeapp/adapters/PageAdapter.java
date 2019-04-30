@@ -23,8 +23,6 @@ public class PageAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return new ActualFragment();
-            case 1:
-                return new AllFragment();
             default:
                 return null;
         }

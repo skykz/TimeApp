@@ -139,15 +139,13 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
 //                        signoutButton.setEnabled(true);
 
-
-                        dialog = ProgressDialog.show(PhoneLoginActivity.this, "Авторизация",
-                                "Загрузка...", true);
-
-
                         resendButton.setEnabled(false);
                         verifyButton.setEnabled(false);
                         codeText.setText("");
                         signInWithPhoneAuthCredential(credential);
+
+                        dialog = ProgressDialog.show(PhoneLoginActivity.this, "Авторизация",
+                                "Загрузка...", true);
 
                         Intent intent = new Intent(getBaseContext(), LoginActivity.class);
                         startActivity(intent);
@@ -205,6 +203,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                             saveData(user.getUid(),user.getPhoneNumber());
 
+
                         } else {
                             if (task.getException() instanceof
                                     FirebaseAuthInvalidCredentialsException) {
@@ -252,7 +251,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
 //        dialog.cancel();
         //destroy counter
 //        countDownTimer.cancel();
-        dialog.dismiss();
+//        dialog.cancel();
     }
 
     public void verifyCode(View view) {

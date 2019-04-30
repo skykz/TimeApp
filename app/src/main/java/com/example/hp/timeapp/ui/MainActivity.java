@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //        tablayouts and items
          tabLayout = findViewById(R.id.tablayout);
          tabActual = findViewById(R.id.actual_tab);
-         tabAll = findViewById(R.id.all_tab);
+//         tabAll = findViewById(R.id.all_tab);
 
          viewPager = findViewById(R.id.viewPager);
 
@@ -108,14 +108,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
 
-                if (tab.getPosition() == 1) {
-                    toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1));
-                    tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1_m));
-                    }
-                }  else {
-                    toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
+//                if (tab.getPosition() == 1) {
+//                    toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1));
+//                    tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1));
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1_m));
+//                    }
+//                }   {
+                if (tab.getPosition() == 0){ toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
                     tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark));
@@ -214,7 +214,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                  Intent intent = new Intent(this,ProfileActivity.class);
                  startActivity(intent);
-
+             }
+             else if (id == R.id.logout_menu){
+                 logout();
              }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -244,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    public void Logout(){
+    public void logout(){
         new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                 .setTitleText("Вы действительно хотите выйти?")
                 .setContentText("Вы можете авторизоваться в любое время!")

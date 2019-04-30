@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 
+import android.os.SystemClock;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
@@ -22,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 
 
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -51,6 +53,8 @@ import com.google.firebase.auth.GetTokenResult;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -101,12 +105,19 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
     private FirebaseAuth fbAuth;
     private FirebaseUser user;
 
+    @BindView(R.id.button_order_accept)
+    Button buttonOrder;
+
+    private long lastClickTime = 0;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_data);
+
 
         toolbar = findViewById(R.id.toolbar1);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -178,8 +189,29 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
         //getting single service data from server
         getOrganizationById();
+
+        Button buttonOrder = (Button) findViewById(R.id.button_order_accept);
+        buttonOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                test();
+            }
+        });
+
     }
 
+    void test(){
+        // preventing double, using threshold of 1000 ms
+        if (SystemClock.elapsedRealtime() - lastClickTime < 1500){
+            return;
+        }
+        lastClickTime = SystemClock.elapsedRealtime();
+
+        Intent intent = new Intent(this,WaitingActivity.class);
+        startActivity(intent);
+        finish();
+
+    }
 
     @Override
     public void onRefresh() {
@@ -187,9 +219,7 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 getOrganizationById();
-
             }
         }, 1300);
     }
@@ -202,7 +232,6 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
         if (intent != null){
             organization_id = intent.getInt("id_organization");
         }
-
         return  organization_id;
     }
 
@@ -243,11 +272,6 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
                     Toast.makeText(getApplicationContext(), "Все успешно загружено", Toast.LENGTH_SHORT).show();
 
-                } else {
-                    Toast.makeText(getApplicationContext(), "Не могу загрузить данные" + tokenManager.getToken(), Toast.LENGTH_LONG).show();
-                    tokenManager.deleteToken();
-                    startActivity(new Intent(SingleActivity.this, LoginActivity.class));
-                    finish();
                 }
             }
 

@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="115dp"
     android:layout_gravity="center"
     android:layout_margin="4dp"
     android:background="@drawable/ripple_background"
@@ -17,7 +17,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="96dp"
+        android:layout_height="85dp"
         android:layout_margin="4dp"
 
         android:orientation="horizontal">
@@ -32,7 +32,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="133dp"
-            android:layout_height="match_parent"
+            android:layout_height="85dp"
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -77,10 +77,9 @@
                 app:srcCompat="@drawable/ic_star_rating" />
 
 
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView3"
-                android:layout_width="75dp"
+                android:layout_width="74dp"
                 android:layout_height="84dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="52dp"
@@ -107,16 +106,16 @@
 
         <LinearLayout
             android:layout_width="288dp"
-            android:layout_height="match_parent"
+            android:layout_height="85dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="175dp"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -138,13 +137,13 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="100dp">
+        android:layout_height="25dp"
+        android:layout_marginTop="90dp">
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="15dp"
-            android:layout_height="14dp"
+            android:layout_width="13dp"
+            android:layout_height="12dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="2dp"
@@ -157,7 +156,7 @@
         <TextView
             android:id="@+id/textView12"
             android:layout_width="55dp"
-            android:layout_height="14dp"
+            android:layout_height="13dp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="1dp"
             android:text="5 мин "
@@ -171,12 +170,12 @@
             android:id="@+id/imageView6"
             android:layout_width="36dp"
             android:layout_height="26dp"
-            android:layout_marginStart="136dp"
+            android:layout_marginStart="144dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0.222"
             app:srcCompat="@drawable/ic_beenhereicon" />
 
         <TextView
@@ -185,10 +184,14 @@
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/like_button"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.285" />
 
         <!--<ImageView-->
         <!--android:id="@+id/imageView7"-->

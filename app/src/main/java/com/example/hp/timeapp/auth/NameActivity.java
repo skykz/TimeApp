@@ -14,6 +14,7 @@ import android.transition.ChangeBounds;
 import android.transition.Slide;
 import android.transition.Transition;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -24,9 +25,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hp.timeapp.R;
 import com.github.jorgecastilloprz.FABProgressCircle;
+
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,8 +70,8 @@ public class NameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number_input);
 
-
         ButterKnife.bind(this);
+
         setupWindowAnimations();
 
 
@@ -254,10 +258,17 @@ public class NameActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                String phoneNumber = "+7"+etPhoneNo.getText().toString();
 
-                Intent intent = new Intent(NameActivity.this, LoginActivity.class);
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(NameActivity.this);
-                startActivity(intent, options.toBundle());
+
+                if (isValidMobile(etPhoneNo.getText().toString())) {
+
+                    Intent intent = new Intent(NameActivity.this, PhoneLoginActivity.class);
+                    intent.putExtra("PHONE_NUMBER", phoneNumber);
+
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(NameActivity.this);
+                    startActivity(intent, options.toBundle());
+                }
             }
         }, 500);
     }
@@ -267,5 +278,34 @@ public class NameActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    private boolean isValidMobile(String phone) {
+        boolean check = false;
+        if(!Pattern.matches("[a-zA-Z] ", phone)) {
+            if(phone.length() < 11 && phone.length() > 9) {
+                // if(phone.length() != 10) {
+                check = true;
+            } else {
+                check = false;
+                Toast.makeText(getBaseContext(), "Неверный формат номера", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Пожалуйста,повторите...", Toast.LENGTH_LONG).show();
+
+            }
+        } else {
+            check=false;
+            Toast.makeText(getBaseContext(), "Неверный формат номера...", Toast.LENGTH_LONG).show();
+
+        }
+        return check;
+    }
+//    public boolean checkForEmail(Context c, String edit) {
+////        String str = edit.getText().toString();
+//        if (Patterns.PHONE.matcher(edit).matches()) {
+//            Toast.makeText(c, "Telephone is valid...", Toast.LENGTH_LONG).show();
+//
+//            return true;
+//        }
+//        Toast.makeText(c, "Telephone is not valid...", Toast.LENGTH_LONG).show();
+//        return false;
+//    }
 
 }

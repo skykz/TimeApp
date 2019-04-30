@@ -28,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Войти как специалист"
-
             android:layout_gravity="bottom"
             android:textColor="#fff"
             android:background="@drawable/btn_bg"

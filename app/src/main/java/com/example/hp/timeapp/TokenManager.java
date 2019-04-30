@@ -31,7 +31,6 @@ public class TokenManager {
     }
 
     public void saveToken(AccessToken token){
-
             editor.putString("ACCESS_TOKEN",token.getAccessToken()).commit();
             editor.putString("REFRESH_TOKEN",token.getRefreshToken()).commit();
     }

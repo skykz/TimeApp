@@ -17,10 +17,10 @@
             android:id="@+id/tvMoving"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
             android:hint="sdfsdfdsf"
-            android:text="Введите ваш номер"
+            android:text="Вы получите SMS код для подтверждения вашего номера телефона"
             android:textColor="#262626"
             android:textColorHint="#DADBDF"
             android:textSize="18sp"
@@ -31,8 +31,6 @@
             android:id="@+id/llInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingLeft="20dp">
@@ -55,6 +53,7 @@
                 android:text="+7"
                 android:textColor="#0E0E0E"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 android:transitionName="@string/transition_tvCode" />
 
             <EditText

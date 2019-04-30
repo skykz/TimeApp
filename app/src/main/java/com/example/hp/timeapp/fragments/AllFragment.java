@@ -106,7 +106,6 @@ public class AllFragment extends Fragment implements View.OnClickListener {
 //        popupView = getLayoutInflater().inflate(id,null,true);
 //
 //        (id,getView(), false);
-
     }
 
 

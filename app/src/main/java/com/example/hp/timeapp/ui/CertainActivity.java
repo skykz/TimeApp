@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import android.os.Handler;
 
+import android.os.SystemClock;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import com.example.hp.timeapp.networkAPI.ApiService;
 import com.example.hp.timeapp.networkAPI.RetrofitBuilder;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.suke.widget.SwitchButton;
 
 
 import java.util.List;
@@ -58,6 +60,8 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
     private Call<FreeServicesResponse> call;
     private List<Organization> lister;
     private FirebaseAuth fbAuth;
+    private long lastClickTime = 0;
+
 
 
 
@@ -73,12 +77,11 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
             apiService = RetrofitBuilder.createServiceWithAuth(ApiService.class);
 
             recyclerView = findViewById(R.id.recycler_view);
-
             recyclerView.setHasFixedSize(true);
-
             LinearLayoutManager llm = new LinearLayoutManager(this);
             llm.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(llm);
+
 
 
             toolbar = findViewById(R.id.toolbar_certain);
@@ -89,14 +92,28 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
                 }
             });
 
+             com.suke.widget.SwitchButton switchButton = (com.suke.widget.SwitchButton)
+                    findViewById(R.id.switch_button);
+
+                switchButton.setChecked(false);
+                switchButton.isChecked();
+                switchButton.toggle();     //switch state
+                switchButton.toggle(false);//switch without animation
+                switchButton.setShadowEffect(true);//disable shadow effect
+                switchButton.setEnabled(true);//disable button
+                switchButton.setEnableEffect(true);//disable the switch animation
+                switchButton.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                        //TODO do your job
+                    }
+            });
 
             getListOfOrganization();
 
             swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
             swipeRefreshLayout.setOnRefreshListener(this);
-
             init();
-
 
     }
 
@@ -120,10 +137,15 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
     //google map initializing
     private void init(){
         mapButton = (ImageButton)findViewById(R.id.map_start);
-
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // preventing double, using threshold of 1000 ms
+                if (SystemClock.elapsedRealtime() - lastClickTime < 1500){
+                    return;
+                }
+                lastClickTime = SystemClock.elapsedRealtime();
                 Intent intentMap = new Intent(CertainActivity.this, MapActivity.class);
                 startActivity(intentMap);
             }
@@ -154,8 +176,8 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
 
                             Intent intent = new Intent(CertainActivity.this,SingleActivity.class);
                             intent.putExtra("id_organization",postId);
-
                             startActivity(intent);
+
                         }
                     });
 

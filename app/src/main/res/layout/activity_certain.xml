@@ -23,12 +23,29 @@
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="200dp"
+            android:orientation="vertical">
+
+            <com.suke.widget.SwitchButton
+                android:id="@+id/switch_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:sb_button_color="#32D15F"
+                app:sb_checked_color="#83E643"
+                app:sb_checkline_color="#fff"
+                app:sb_uncheck_color="#DB1D1D" />
+        </LinearLayout>
+
         <ImageButton
             android:id="@+id/map_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="270dp"
-            android:layout_marginLeft="270dp"
+            android:layout_marginLeft="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/location_icon"
             app:srcCompat="@drawable/ic_locationicon" />
@@ -72,7 +89,7 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="50dp"
         android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView

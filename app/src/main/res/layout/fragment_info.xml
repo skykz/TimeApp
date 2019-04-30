@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="wrap_content"
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/data_single"
@@ -9,15 +10,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <android.support.v4.view.ViewPager
+        <com.synnapps.carouselview.CarouselView
             android:id="@+id/viewPager_slider"
-            android:layout_width="match_parent"
-            android:layout_height="172dp"
-            android:layout_marginTop="44dp"
+            android:layout_width="417dp"
+            android:layout_height="204dp"
+            android:layout_marginTop="85dp"
+            app:fillColor="#69D147"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:pageColor="#00000000"
+            app:radius="6dp"
+            app:slideInterval="3000"
+            app:strokeColor="#898B86"
+            app:strokeWidth="1dp" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabDots"

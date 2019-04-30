@@ -113,16 +113,6 @@ public class LoginActivity extends AppCompatActivity {
 //        loader.setVisibility(View.GONE);
 //    }
 
-//    void saveData(String user_uid,String phoneNumber) {
-//        SharedPreferences.Editor sPref = sharedPreferences.edit();
-//
-//        sPref.putString("user_uid", user_uid);
-//        sPref.putString("user_phone_number",phoneNumber);
-//        sPref.commit();
-//
-//        Toast.makeText(this, "USer data saved", Toast.LENGTH_SHORT).show();
-//    }
-
 
     @OnClick(R.id.fabProgressCircle)
     void nextActivity() {

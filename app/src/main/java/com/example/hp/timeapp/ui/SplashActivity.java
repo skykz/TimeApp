@@ -40,15 +40,16 @@ public class SplashActivity extends Activity {
             Toast.makeText(getApplicationContext(),"Проблема с интернетом! Проверьте соединение с интернетом",Toast.LENGTH_LONG).show();
         }else {
 
-//            if (fbAuth.getCurrentUser() != null) {
-//                Intent intent = new Intent(this, MainActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }else {
+            if (fbAuth.getCurrentUser() != null) {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
                 Intent intent = new Intent(this, NumberActivity.class);
                 startActivity(intent);
                 finish();
             }
+        }
 
     }
 

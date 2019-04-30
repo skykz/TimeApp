@@ -3,6 +3,7 @@ package com.example.hp.timeapp.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
     private Context context;
     private List<Organization> postList;
     private OnNoteListener MonNoteListener;
+    private long lastClickTime = 0;
 
 
     public PostListAdapter(List<Organization> postList,Context context,OnNoteListener onNoteListener) {
@@ -80,6 +82,13 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
         @Override
         public void onClick(View v) {
             int position  = getAdapterPosition();
+            // preventing double, using threshold of 1000 ms
+            if (SystemClock.elapsedRealtime() - lastClickTime < 1500){
+                return;
+            }
+            lastClickTime = SystemClock.elapsedRealtime();
+
+
             MonNoteListener.onNoteClick(getAdapterPosition());
         }
     }
@@ -100,12 +109,14 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
             public void liked(LikeButton likeButton) {
                 holder.likeButton.setLiked(true);
 
+
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
 
                 holder.likeButton.setLiked(false);
+
             }
         });
 
@@ -125,7 +136,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
                 .into(holder.image);
 
         Glide.with(context)
-                .load("https://subshop.kz/images/organizations/slider2.jpg")
+                .load(R.drawable.avatar_lady)
                 .into(holder.image1);
     }
 

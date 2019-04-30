@@ -3,6 +3,7 @@ package com.example.hp.timeapp.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.example.hp.timeapp.R;
 public class ActualFragment extends Fragment {
 
     private final String TAG = "ActualFragment";
+    private long lastClickTime = 0;
 
 //    public ActualFragment() {
 //        // Required empty public constructor
@@ -31,15 +33,19 @@ public class ActualFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_actual,container,false);
-
-
-        ImageButton buttonCar = (ImageButton) view.findViewById(R.id.buttonCarService);
+        final ImageButton buttonCar = (ImageButton) view.findViewById(R.id.buttonCarService);
 
         buttonCar.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                // preventing double, using threshold of 1000 ms
+                if (SystemClock.elapsedRealtime() - lastClickTime < 1500){
+                    return;
+                }
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 Log.w(TAG,"Select item is now working");
                 Intent myIntent = new Intent(getActivity(), CertainActivity.class);
                 startActivity(myIntent);

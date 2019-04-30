@@ -1,0 +1,118 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <ProgressBar
+        android:id="@+id/view_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="253dp"
+        android:layout_height="253dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="78dp"
+        android:progressDrawable="@drawable/drawable_circularprogressbar" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="185dp"
+        android:layout_height="187dp"
+        android:layout_alignStart="@+id/view_progress_bar"
+        android:layout_alignTop="@+id/view_progress_bar"
+        android:layout_alignEnd="@+id/view_progress_bar"
+        android:layout_alignBottom="@+id/view_progress_bar"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="31dp"
+        android:elevation="10dp"
+        android:src="@drawable/avatar_lady"
+        app:civ_border_color="@color/tab_gray"
+        app:civ_border_width="3dp" />
+
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="97dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="283dp"
+        android:layout_marginEnd="155dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="562dp"
+        android:layout_marginEnd="118dp"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="Отменить"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="236dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="84dp"
+        android:text="Ожидайте ответа от "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="368dp"
+        android:layout_marginEnd="98dp"
+        android:lineSpacingExtra="8sp"
+        android:text="Мастера Юлии"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <com.github.jorgecastilloprz.FABProgressCircle
+        android:id="@+id/waiting_fabProgressCircle"
+        android:layout_width="156dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="456dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="20dp"
+        app:arcColor="#2AD108">
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_alignStart="@+id/waiting_fabProgressCircle"
+            android:layout_alignTop="@+id/waiting_fabProgressCircle"
+            android:layout_alignEnd="@+id/waiting_fabProgressCircle"
+            android:layout_margin="20dp"
+            app:backgroundTint="@color/colorError"
+            app:elevation="10dp"
+            app:srcCompat="@drawable/ic_close_black_24dp" />
+
+    </com.github.jorgecastilloprz.FABProgressCircle>
+
+</RelativeLayout>

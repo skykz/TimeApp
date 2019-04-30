@@ -27,14 +27,18 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
+        <activity android:name=".ui.WaitingActivity"></activity>
         <activity
             android:name=".ui.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".auth.NumberActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".auth.NumberActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".auth.PhoneLoginActivity"
-            android:label="@string/title_activity_phone_login" />
+            android:label="@string/title_activity_phone_login"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.SelectActivity" />
         <activity
             android:name=".ui.SingleActivity"
@@ -69,8 +73,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.LoginActivity" />
-        <activity android:name=".auth.NameActivity" />
+        <activity
+            android:name=".auth.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".auth.NameActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".auth.RegistrationActivity" />
         <activity
             android:name=".settings.SettingsActivity"
