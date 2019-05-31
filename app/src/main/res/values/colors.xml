@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#32D25F</color>
+    <color name="colorPrimary">#FAFAFA</color>
     <color name="colorPrimaryDark">#0D7D1E</color>
     <color name="colorAccent">#32D25F</color>
 
     <color name="colorError">#F54B4B</color>
     
-    <color name="tab_gray">#eae8e8</color>
+    <color name="tab_gray">#6D6A6A</color>
     <color name="placeholder_bg">#D6D4D4</color>
 
-    <color name="splash_bk_main">#DFAB43</color>
-    <color name="fragment1">#DFB343</color>
-    <color name="fragment1_m">#D6A30C</color>
-    <color name="splash_bk_alternative">#25ae35</color>
-    <color name="dark_blue">#079121</color>
-    <color name="purple">#a5d1aa</color>
+    <color name="splash_bk_main">#FAFAFA</color>
+    <color name="fragment1">#FAFAFA</color>
+    <color name="fragment1_m">#FAFAFA</color>
+    <color name="splash_bk_alternative">#FAFAFA</color>
+    <color name="dark_blue">#FAFAFA</color>
+    <color name="purple">#FAFAFA</color>
 
     <color name="background">#F3EEEE</color>
 

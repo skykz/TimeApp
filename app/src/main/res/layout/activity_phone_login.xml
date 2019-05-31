@@ -20,12 +20,13 @@
 
     <Button
         android:id="@+id/resendButton"
-        android:layout_width="140dp"
+        android:layout_width="146dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
         android:layout_marginRight="32dp"
         android:background="@drawable/warning_bg"
+        android:drawableEnd="@drawable/ic_resend"
         android:onClick="resendCode"
         android:text="Переотправить"
         android:textColor="#fff"

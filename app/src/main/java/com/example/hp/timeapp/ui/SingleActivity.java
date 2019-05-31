@@ -10,7 +10,6 @@ import android.os.SystemClock;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
-import android.support.transition.TransitionManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -31,30 +30,19 @@ import android.widget.Toast;
 
 
 import com.example.hp.timeapp.R;
-import com.example.hp.timeapp.TokenManager;
 import com.example.hp.timeapp.adapters.CustomSwipeAdapter;
 
-import com.example.hp.timeapp.adapters.PageAdapter;
 import com.example.hp.timeapp.adapters.single_adapter.SingleAdapter;
-import com.example.hp.timeapp.auth.LoginActivity;
 
 import com.example.hp.timeapp.auth.NumberActivity;
-import com.example.hp.timeapp.entities.GetServiceById;
 import com.example.hp.timeapp.entities.SingleOrganization;
 import com.example.hp.timeapp.networkAPI.ApiService;
 import com.example.hp.timeapp.networkAPI.RetrofitBuilder;
-import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GetTokenResult;
 
-
-import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,7 +52,6 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
     private final String TAG = "SingleActivity";
 
     private ApiService apiService;
-    private TokenManager tokenManager;
 
     private Toolbar toolbar;
     private Call<SingleOrganization> call;
@@ -74,10 +61,9 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
     private String[] imageUrls = new String[]
             {
-            "https://subshop.kz/images/organizations/slider1.jpg",
-            "https://subshop.kz/images/organizations/slider2.jpg",
-            "https://subshop.kz/images/organizations/slider3.jpg",
-            "https://subshop.kz/images/organizations/slider1.jpg"
+            "https://subshop.kz/images/organizations/singleorg1.jpg",
+            "https://subshop.kz/images/organizations/singleorg2.jpg",
+            "https://subshop.kz/images/organizations/singleorg3.jpg",
             };
 
 
@@ -156,7 +142,7 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
                    if (tab.getPosition() == 1) {
 
                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                           getWindow().setStatusBarColor(ContextCompat.getColor(SingleActivity.this, R.color.fragment1));
+                           getWindow().setStatusBarColor(ContextCompat.getColor(SingleActivity.this, R.color.colorPrimaryDark));
 
                        }
                    } else {
@@ -184,8 +170,7 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
 
-
-        Toast.makeText(getApplicationContext(),"Current user " + fbAuth.getCurrentUser(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Current user " + fbAuth.getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();
 
         //getting single service data from server
         getOrganizationById();
@@ -210,7 +195,6 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
         Intent intent = new Intent(this,WaitingActivity.class);
         startActivity(intent);
         finish();
-
     }
 
     @Override
@@ -250,8 +234,6 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
                     Log.d(TAG, "onResponse: Single Images : " + org);
 
-//                    mAdapter = new SingleItemAdapter(SingleActivity.this,org);
-
                     customSwipeAdapter = new CustomSwipeAdapter(SingleActivity.this, imageUrls);
 //                    viewPager1.setAdapter(customSwipeAdapter);
 
@@ -266,7 +248,6 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 
                     TextView textView2 = findViewById(R.id.textView21);
                     textView2.setText(org.getName_of_organization());
-
 
 //                    HideLoading();
 
@@ -306,21 +287,6 @@ public class SingleActivity extends AppCompatActivity implements SwipeRefreshLay
 //        mShimmerViewContainer.stopShimmer();
     }
 
-//    private void ShowLoading(){
-//
-//        TransitionManager.beginDelayedTransition(container);
-//        formContainer.setVisibility(View.GONE);
-//        loader.setVisibility(View.VISIBLE);
-//
-//    }
-//    private void HideLoading()
-//    {
-//
-//        TransitionManager.beginDelayedTransition(container);
-//        formContainer.setVisibility(View.VISIBLE);
-//        loader.setVisibility(View.GONE);
-//
-//    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -27,6 +27,8 @@ import com.example.hp.timeapp.R;
 import java.util.List;
 
 
+//TODO:make settings preference special for our project
+
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
     /**

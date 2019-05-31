@@ -34,7 +34,6 @@ public class SplashActivity extends Activity {
         user = fbAuth.getCurrentUser();
 
 
-
         if (!isOnline())
         {
             Toast.makeText(getApplicationContext(),"Проблема с интернетом! Проверьте соединение с интернетом",Toast.LENGTH_LONG).show();
@@ -74,7 +73,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        getIntent();
+//        getIntent();
         isOnline();
     }
 }

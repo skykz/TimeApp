@@ -7,4 +7,5 @@ public class Constants {
     public static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     public static final String USER_DATA = "USER_DATA";
 
+
 }

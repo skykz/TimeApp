@@ -8,6 +8,6 @@
         android:id="@+id/image_slide"
         android:layout_width="match_parent"
         android:layout_height="175dp"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="30dp"/>
 
 </LinearLayout>

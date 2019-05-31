@@ -27,7 +27,7 @@ public class InfoFragment extends Fragment {
     private SingleAdapter singleAdapter;
 
     private CarouselView carouselView;
-    private int[] sampleImages = { R.drawable.time_green,R.drawable.avatar_lady,R.drawable.ic_make_up,R.drawable.avatar_lady};
+    private int[] sampleImages = { R.drawable.singleorg1,R.drawable.singleorg2,R.drawable.singleorg3};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment

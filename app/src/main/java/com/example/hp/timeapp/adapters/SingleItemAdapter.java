@@ -97,7 +97,7 @@ public class SingleItemAdapter extends RecyclerView.Adapter<SingleItemAdapter.My
         holder.description.setText(postList.get(position).getStatus_of_organization());
         holder.price.setText("Price: $" + postList.get(position).getPrice());
 //        holder.title.setText(postList.getName_of_organization());
-        holder.rating.setText(String.valueOf(postList.get(position).getRating()));
+        holder.rating.setText(String.valueOf(postList.get(position).getRating())+ ".0");
         holder.status.setText(String.valueOf(postList.get(position).getStatus_of_organization()));
 
 //        holder.timestamp.setText(recipe.getTimestamp());
@@ -105,7 +105,6 @@ public class SingleItemAdapter extends RecyclerView.Adapter<SingleItemAdapter.My
         Log.w(TAG,"Image is COOL");
         Glide.with(context)
                 .load(postList.get(position).getImage_main())
-                .apply(new RequestOptions().override(1000,200))
                 .into(holder.image);
     }
 

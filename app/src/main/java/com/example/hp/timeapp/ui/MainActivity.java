@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -24,26 +23,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.hp.timeapp.R;
-import com.example.hp.timeapp.TokenManager;
 import com.example.hp.timeapp.adapters.PageAdapter;
-import com.example.hp.timeapp.auth.LoginActivity;
 
 
 import com.example.hp.timeapp.auth.NumberActivity;
-import com.example.hp.timeapp.entities.FreeServicesResponse;
-import com.example.hp.timeapp.networkAPI.ApiService;
 import com.example.hp.timeapp.settings.SettingsActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
-import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import retrofit2.Call;
 
 import static com.example.hp.timeapp.util.Constants.USER_DATA;
 
@@ -62,13 +56,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private NavigationView navigationView;
 //    private SharedPreferences sPref;
+    private  TextView username,username1;
     public MenuItem menuItem;
     private Intent intent;
     private MaterialSearchView materialSearchView;
 
-//    private ApiService apiService;
-//    private TokenManager tokenManager;
-//    private Call<FreeServicesResponse> call;
 
     SharedPreferences sharedPreferences;
     private FirebaseAuth fbAuth;
@@ -78,13 +70,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //TODO: create a new activity (BASE) ,which will contain main and global variables, functions
+        //TODO: change theme to white color
+
+
         setContentView(R.layout.main_activity);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            toolbar.setLogo(R.drawable.time_white);
+            //TODO: set green type logotype (400X400)
+            toolbar.setLogo(R.drawable.time_main_green_logo);
         }
+
 
         //material search views
         materialSearchView = findViewById(R.id.search_view);
@@ -94,7 +93,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //        tablayouts and items
          tabLayout = findViewById(R.id.tablayout);
          tabActual = findViewById(R.id.actual_tab);
-//         tabAll = findViewById(R.id.all_tab);
+         tabAll = findViewById(R.id.all_tab);
+
+
 
          viewPager = findViewById(R.id.viewPager);
 
@@ -108,14 +109,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
 
-//                if (tab.getPosition() == 1) {
-//                    toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1));
-//                    tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1));
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1_m));
-//                    }
-//                }   {
-                if (tab.getPosition() == 0){ toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
+                if (tab.getPosition() == 1) {
+                    toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1));
+                    tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.fragment1));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark));
+                    }
+                }   else{
+                    toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
                     tabLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark));
@@ -139,15 +140,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        View view = navigationView.getHeaderView(0);
+
+
+        //username init
+         username  = (TextView) view.findViewById(R.id.nav_username);
+        username1 = (TextView) view.findViewById(R.id.nav_username1);
+
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        //Fire base instance to manipulate
         fbAuth = FirebaseAuth.getInstance();
 
         sharedPreferences  = getSharedPreferences(USER_DATA, Context.MODE_PRIVATE);
-
-
         Toast.makeText(getBaseContext(),"User name is " + sharedPreferences.getString("first_name",null),Toast.LENGTH_SHORT).show();
+
+        username.setText(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber());
+        username1.setText(sharedPreferences.getString("first_name",null));
 
     }
 
@@ -194,30 +205,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        //TODO:set current user data to display
+
         if (id == R.id.nav_history) {
-
             // Handle the camera action
-        } else
-             if (id == R.id.nav_news)
-             {
+        } else if (id == R.id.nav_news) {
 
-             }
-             else if (id == R.id.nav_help) {
+        } else if (id == R.id.nav_help) {
 
             Log.i("History", "FRAGMENT");
 //            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HistoryFragment()).commit();
-
         } else if (id == R.id.nav_settings) {
             Settings();
 
         } else if (id == R.id.profile) {
-
                  Intent intent = new Intent(this,ProfileActivity.class);
                  startActivity(intent);
-             }
-             else if (id == R.id.logout_menu){
+        } else if (id == R.id.logout_menu){
                  logout();
-             }
+        }
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -237,7 +243,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         sharedPreferences = getSharedPreferences(USER_DATA,MODE_PRIVATE);
         if (sharedPreferences.contains("user_uid")){
-
             String user_uid = sharedPreferences.getString("user_uid",null);
         }
         if (sharedPreferences.contains("user_phone_number")){
@@ -247,6 +252,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void logout(){
+
         new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                 .setTitleText("Вы действительно хотите выйти?")
                 .setContentText("Вы можете авторизоваться в любое время!")
@@ -268,6 +274,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void action_logout(){
+        //delete data from shared preference in app
         removeData();
 
         intent = new Intent(this, NumberActivity.class);
@@ -285,6 +292,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStop() {
         super.onStop();
+
+        if (pDialog != null)
+            pDialog =null;
     }
 
     @Override
@@ -301,7 +311,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onDestroy() {
         super.onDestroy();
 
-//        if (pDialog != null)
-//            pDialog =null;
     }
 }

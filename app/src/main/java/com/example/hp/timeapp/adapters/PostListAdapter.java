@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.hp.timeapp.R;
@@ -32,15 +33,17 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
 
     private Context context;
     private List<Organization> postList;
+    private String [] images;
     private OnNoteListener MonNoteListener;
     private long lastClickTime = 0;
 
 
-    public PostListAdapter(List<Organization> postList,Context context,OnNoteListener onNoteListener) {
+    public PostListAdapter(List<Organization> postList,String[] images,Context context,OnNoteListener onNoteListener) {
 
         this.postList = postList;
         this.context = context;
         this.MonNoteListener = onNoteListener;
+        this.images = images;
 
     }
 
@@ -56,7 +59,6 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
         private TextView used_amount;
         private LikeButton likeButton;
 
-
         OnNoteListener MonNoteListener;
 
         public MyViewHolder(@NonNull View itemView,OnNoteListener onNoteListener) {
@@ -66,9 +68,10 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
             description = itemView.findViewById(R.id.textView7);
             image = itemView.findViewById(R.id.imageView3);
             image1 = itemView.findViewById(R.id.imageView11);
-            rating = itemView.findViewById(R.id.text_rating);
+            rating = itemView.findViewById(R.id.rating);
             price = itemView.findViewById(R.id.textView6);
-            ID = itemView.findViewById(R.id.id);
+
+//            ID = itemView.findViewById(R.id.id);
             used_amount = itemView.findViewById(R.id.txt_used_amount);
 
             likeButton = itemView.findViewById(R.id.like_button);
@@ -82,12 +85,12 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
         @Override
         public void onClick(View v) {
             int position  = getAdapterPosition();
-            // preventing double, using threshold of 1000 ms
+
+            // preventing double сlick, using threshold of 1000 ms
             if (SystemClock.elapsedRealtime() - lastClickTime < 1500){
                 return;
             }
             lastClickTime = SystemClock.elapsedRealtime();
-
 
             MonNoteListener.onNoteClick(getAdapterPosition());
         }
@@ -95,7 +98,6 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
-
         return new MyViewHolder(itemView,MonNoteListener);
     }
 
@@ -109,35 +111,35 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
             public void liked(LikeButton likeButton) {
                 holder.likeButton.setLiked(true);
 
-
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
-
                 holder.likeButton.setLiked(false);
 
             }
         });
-
 //        holder.likeButton.setLiked(false);
 
-        holder.ID.getId();
+//        holder.ID.getId();
         holder.title.setText(posts.getTitle());
         holder.description.setText(posts.getBody());
         holder.price.setText("Price: $" + posts.getPrice());
         holder.used_amount.setText(String.valueOf(posts.getUsed_by_people()));
-        holder.rating.setText(String.valueOf(posts.getRating()));
+
+
+        holder.rating.setText(String.valueOf(posts.getRating()+",0"));
         //holder.timestamp.setText(recipe.getTimestamp());
-//
-        Log.w(TAG,"Image is COOL");
-        Glide.with(context)
+
+        Glide.with(context)//little changing with glide loader
                 .load(postList.get(position).getImage_url())
                 .into(holder.image);
 
-        Glide.with(context)
-                .load(R.drawable.avatar_lady)
-                .into(holder.image1);
+
+            Glide.with(context)
+                    .load(images[position])
+                    .into(holder.image1);
+
     }
 
     @Override

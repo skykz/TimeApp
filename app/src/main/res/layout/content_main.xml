@@ -21,10 +21,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicatorColor="#ffffff"
-            android:elevation="10dp"
-            app:tabSelectedTextColor="@android:color/white"
-            app:tabTextColor="@color/tab_gray">
+            app:tabIndicatorColor="#252424"
+            android:elevation="5dp"
+            app:tabSelectedTextColor="#0F0F0F"
+            app:tabTextColor="#252424">
 
             <android.support.design.widget.TabItem
                 android:id="@+id/actual_tab"

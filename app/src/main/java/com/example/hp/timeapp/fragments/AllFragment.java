@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
@@ -27,6 +28,7 @@ public class AllFragment extends Fragment implements View.OnClickListener {
     private Animation apper;
     private TextView txtclose;
     private View popupView;
+
 
     private PopupWindow popupWindow;
     public AllFragment() {
@@ -99,7 +101,6 @@ public class AllFragment extends Fragment implements View.OnClickListener {
         popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY,
                 location[0], location[1] + anchorView.getHeight());
 
-
         popupView = getLayoutInflater().inflate(id,null,true);
 
 //
@@ -111,7 +112,7 @@ public class AllFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Log.w(TAG,"POPUP  item is now working");
+//        Log.w(TAG,"POPUP  item is now working");
         switch (v.getId()){
 
             case R.id.buttonBeauty:

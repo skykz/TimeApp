@@ -23,8 +23,8 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/ripple_background"
-            android:contentDescription="@string/carService"
-            app:srcCompat="@drawable/ic_lift" />
+            android:contentDescription="@string/manicure"
+            app:srcCompat="@drawable/ic_manicure" />
 
         <ImageButton
             android:id="@+id/buttonCarWash"
@@ -73,7 +73,7 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Автосервис"
+            android:text="@string/manicure"
             android:textSize="12sp" />
 
         <TextView

@@ -2,7 +2,6 @@ package com.example.hp.timeapp.networkAPI;
 
 
 import com.example.hp.timeapp.BuildConfig;
-import com.example.hp.timeapp.TokenManager;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.IOException;
@@ -14,7 +13,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class RetrofitBuilder {

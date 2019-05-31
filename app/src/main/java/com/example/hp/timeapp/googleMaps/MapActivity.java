@@ -56,13 +56,16 @@ public class MapActivity extends AppCompatActivity {
     private boolean mLocationPermissionGranted = false;
     private Toolbar toolbar;
 
+    //TODO: adding basic button on the map: current location, zoom, campus
+    //TODO: add current location marker on the map
+    //TODO: add multiple location marker on the map of specialists
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
         toolbar = findViewById(R.id.toolbar_map);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +99,7 @@ public class MapActivity extends AppCompatActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Пожайлуйста, Включите GPS для корректной работы.")
                 .setCancelable(false)
-                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                .setPositiveButton("ок", new DialogInterface.OnClickListener() {
                     public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         Intent enableGpsIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                         startActivityForResult(enableGpsIntent, PERMISSIONS_REQUEST_ENABLE_GPS);

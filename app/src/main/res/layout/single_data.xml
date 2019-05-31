@@ -18,11 +18,11 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/toolbar1"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/colorPrimary"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary"
             android:elevation="5dp"
             android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -37,7 +37,7 @@
                 app:icon_size="20dp"
                 app:icon_type="heart"
                 app:like_drawable="@drawable/heart_on"
-                app:unlike_drawable="@drawable/ic_favorite" />
+                app:unlike_drawable="@drawable/ic_favorite_gray" />
 
             <ImageButton
                 android:id="@+id/map_start"
@@ -52,17 +52,17 @@
             android:id="@+id/tablayout_single"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:background="@android:color/white"
+            android:background="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicatorColor="@color/splash_bk_alternative"
+            app:tabIndicatorColor="#201F1F"
             android:elevation="5dp"
             app:tabGravity="fill"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/splash_bk_alternative"
-            app:tabTextColor="#3D3A3A">
+            app:tabSelectedTextColor="#0E0D0D"
+            app:tabTextColor="@color/tab_gray">
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tab_info"

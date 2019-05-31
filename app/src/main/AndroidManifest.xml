@@ -79,7 +79,6 @@
         <activity
             android:name=".auth.NameActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".auth.RegistrationActivity" />
         <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/title_activity_settings"

@@ -12,16 +12,14 @@
         android:id="@+id/toolbar_certain"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorPrimary"
         android:elevation="5dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
+        app:navigationIcon="?attr/homeAsUpIndicator">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -38,7 +36,7 @@
                 app:sb_button_color="#32D15F"
                 app:sb_checked_color="#83E643"
                 app:sb_checkline_color="#fff"
-                app:sb_uncheck_color="#DB1D1D" />
+                app:sb_uncheck_color="#32D15F" />
         </LinearLayout>
 
         <ImageButton
@@ -48,7 +46,7 @@
             android:layout_marginLeft="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/location_icon"
-            app:srcCompat="@drawable/ic_locationicon" />
+            app:srcCompat="@drawable/ic_location_certain" />
 
     </android.support.v7.widget.Toolbar>
 
@@ -64,6 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--TODO:change theme of certain activity-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -89,7 +88,7 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView

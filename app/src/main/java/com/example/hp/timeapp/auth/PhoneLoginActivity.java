@@ -57,6 +57,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
     private Button verifyButton;
 //    private Button sendButton;
     private Button resendButton;
+
 //    private Button signoutButton;
     private TextView statusText;
 
@@ -73,11 +74,12 @@ public class PhoneLoginActivity extends AppCompatActivity {
 //        phoneText = (PrefixEditText) findViewById(R.id.phoneText);
         codeText = (EditText) findViewById(R.id.codeText);
         verifyButton = (Button) findViewById(R.id.verifyButton);
+
 //        sendButton = (Button) findViewById(R.id.sendButton);
         resendButton = (Button) findViewById(R.id.resendButton);
+
 //        signoutButton = (Button) findViewById(R.id.signoutButton);
         statusText = (TextView) findViewById(R.id.statusText);
-
 
 
         verifyButton.setEnabled(false);
@@ -88,14 +90,13 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
         fbAuth = FirebaseAuth.getInstance();
         sendCode();
+
         countDown();
 
         FirebaseUser firebaseUser = fbAuth.getCurrentUser();
         sharedPreferences  = getSharedPreferences(USER_DATA, Context.MODE_PRIVATE);
-
 //        fbAuth.
     }
-
 
     public void countDown(){
 
@@ -104,7 +105,6 @@ public class PhoneLoginActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 statusText.setText("Вы получите код в течении 0:" + millisUntilFinished / 1000 + "сек.");
             }
-
             public void onFinish() {
                 statusText.setText("Если не получили код, повторите еще раз!");
             }
@@ -117,8 +117,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
         String phoneNumber = phone;
 
         Log.d(TAG,"Number is " + phoneNumber);
-
         setUpVerificatonCallbacks();
+
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,        // Phone number to verify
@@ -130,7 +130,6 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
 
     private void setUpVerificatonCallbacks() {
-
         verificationCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
                     @Override
@@ -150,6 +149,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(getBaseContext(), LoginActivity.class);
                         startActivity(intent);
                         finish();
+
                     }
 
                     @Override
@@ -194,11 +194,11 @@ public class PhoneLoginActivity extends AppCompatActivity {
                             // getting user from a fire base server
                             FirebaseUser user = task.getResult().getUser();
 
-                            Log.d(TAG,"FIRE BASE NAme " + user);
-                            Log.d(TAG,"FIRE BASE NAme " + user.getUid());
-                            Log.d(TAG,"FIRE BASE Number " + user.getPhoneNumber());
-                            Log.d(TAG,"FIRE BASE Token " + user.getIdToken(true));
-                            Log.d(TAG,"FIRE BASE Provide " + user.getProviderId());
+//                            Log.d(TAG,"FIRE BASE NAme " + user);
+//                            Log.d(TAG,"FIRE BASE NAme " + user.getUid());
+//                            Log.d(TAG,"FIRE BASE Number " + user.getPhoneNumber());
+//                            Log.d(TAG,"FIRE BASE Token " + user.getIdToken(true));
+//                            Log.d(TAG,"FIRE BASE Provide " + user.getProviderId());
 
 
                             saveData(user.getUid(),user.getPhoneNumber());
@@ -247,11 +247,12 @@ public class PhoneLoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // destroy dialog loading bar
-//        dialog.cancel();
         //destroy counter
 //        countDownTimer.cancel();
-//        dialog.cancel();
+        if (dialog != null){
+            dialog.dismiss();
+            dialog = null;
+        }
     }
 
     public void verifyCode(View view) {

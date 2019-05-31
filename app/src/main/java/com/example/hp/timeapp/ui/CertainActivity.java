@@ -21,13 +21,10 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.hp.timeapp.R;
-import com.example.hp.timeapp.TokenManager;
 import com.example.hp.timeapp.adapters.PostListAdapter;
 
-import com.example.hp.timeapp.auth.LoginActivity;
 import com.example.hp.timeapp.entities.FreeServicesResponse;
 import com.example.hp.timeapp.entities.Organization;
-import com.example.hp.timeapp.fragments.MapFragment;
 import com.example.hp.timeapp.googleMaps.MapActivity;
 import com.example.hp.timeapp.networkAPI.ApiService;
 import com.example.hp.timeapp.networkAPI.RetrofitBuilder;
@@ -62,11 +59,20 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
     private FirebaseAuth fbAuth;
     private long lastClickTime = 0;
 
-
-
-
     private PostListAdapter.OnNoteListener onNoteListener;
 
+    private String[] imageUrls = new String[]
+            {
+                    "https://subshop.kz/images/master1.jpg",
+                    "https://subshop.kz/images/master2.jpg",
+                    "https://subshop.kz/images/master3.jpg",
+                    "https://subshop.kz/images/master4.jpg",
+                    "https://subshop.kz/images/master5.jpg",
+                    "https://subshop.kz/images/master6.jpg",
+                    "https://subshop.kz/images/master7.jpg",
+                    "https://subshop.kz/images/master8.jpg",
+                    "https://subshop.kz/images/master9.jpg"
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +87,6 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
             LinearLayoutManager llm = new LinearLayoutManager(this);
             llm.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(llm);
-
 
 
             toolbar = findViewById(R.id.toolbar_certain);
@@ -105,7 +110,7 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
                 switchButton.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(SwitchButton view, boolean isChecked) {
-                        //TODO do your job
+                        //TODO do your
                     }
             });
 
@@ -113,10 +118,10 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
 
             swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
             swipeRefreshLayout.setOnRefreshListener(this);
+
+            //map button initialization
             init();
-
     }
-
 
     //refresh the current fragment
     @Override
@@ -146,15 +151,17 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
                     return;
                 }
                 lastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intentMap = new Intent(CertainActivity.this, MapActivity.class);
                 startActivity(intentMap);
             }
         });
     }
 
+
+    //TODO: displaying all specialists by status from a FireBase server
     //getting full data item
     private void getListOfOrganization(){
-
 
         call = apiService.freeServices();
         call.enqueue(new Callback<FreeServicesResponse>() {
@@ -168,7 +175,7 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
                 {
                     lister = response.body().getData();
 
-                    mAdapter = new PostListAdapter(lister, CertainActivity.this, new PostListAdapter.OnNoteListener() {
+                    mAdapter = new PostListAdapter(lister, imageUrls,CertainActivity.this, new PostListAdapter.OnNoteListener() {
                         @Override
                         public void onNoteClick(int position) {
                             int postId = lister.get(position).getId();
@@ -201,6 +208,7 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
             public void onFailure(Call<FreeServicesResponse> call, Throwable t) {
                 Log.w(TAG,"onFailure: " + t.getMessage());
 //                swipeRefreshLayout.setRefreshing(false);
+
             }
         });
     }
@@ -228,6 +236,7 @@ public class CertainActivity extends AppCompatActivity implements SwipeRefreshLa
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
         if (call != null)
         {
             call.cancel();

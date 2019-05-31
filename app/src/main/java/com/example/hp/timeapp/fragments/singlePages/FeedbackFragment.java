@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 
 import com.example.hp.timeapp.R;
-import com.example.hp.timeapp.TokenManager;
 import com.example.hp.timeapp.adapters.ListFeedback;
 
 
@@ -30,8 +29,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class FeedbackFragment extends Fragment {
 

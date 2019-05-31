@@ -19,11 +19,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicatorColor="#ffffff"
+            app:tabIndicatorColor="#1F1D1D"
             android:elevation="5dp"
             app:tabGravity="fill"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@android:color/white"
+            app:tabSelectedTextColor="#FF1F1D1D"
             app:tabTextColor="@color/tab_gray">
 
             <android.support.design.widget.TabItem
@@ -37,11 +37,11 @@
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
                 <!--android:text="@string/free" />-->
-            <!--<android.support.design.widget.TabItem-->
-                <!--android:id="@+id/all_tab"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/all" />-->
+            <android.support.design.widget.TabItem
+                android:id="@+id/all_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all" />
 
         </android.support.design.widget.TabLayout>
 

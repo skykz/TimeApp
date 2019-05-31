@@ -9,11 +9,17 @@ import android.view.View;
 
 import com.example.hp.timeapp.R;
 
+
+
+
 public class ProfileActivity extends AppCompatActivity {
+
+    //TODO:make design for profile page
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

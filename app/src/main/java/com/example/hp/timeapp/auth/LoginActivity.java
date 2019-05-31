@@ -8,56 +8,30 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.TextInputLayout;
-import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Slide;
-import android.util.Log;
-import android.util.Patterns;
-import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.basgeekball.awesomevalidation.AwesomeValidation;
-import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.hp.timeapp.ui.MainActivity;
 import com.example.hp.timeapp.R;
-import com.example.hp.timeapp.TokenManager;
-import com.example.hp.timeapp.util.Utils;
-
-import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-import com.example.hp.timeapp.entities.AccessToken;
-import com.example.hp.timeapp.entities.ApiError;
-
-import  com.example.hp.timeapp.networkAPI.ApiService;
-import  com.example.hp.timeapp.networkAPI.RetrofitBuilder;
 import com.github.jorgecastilloprz.FABProgressCircle;
 
 import static com.example.hp.timeapp.util.Constants.USER_DATA;
-import static com.example.hp.timeapp.util.Utils.convertErrors;
 
 
-import static android.view.Gravity.LEFT;
 import static android.view.Gravity.RIGHT;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
-
 
 
     @BindView(R.id.etName)
@@ -100,19 +74,6 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences  = getSharedPreferences(USER_DATA, Context.MODE_PRIVATE);
 
     }
-
-//
-//    private void showLoading(){
-//        TransitionManager.beginDelayedTransition(container);
-//        formContainer.setVisibility(View.GONE);
-//        loader.setVisibility(View.VISIBLE);
-//    }
-//    private void showForm(){
-//        TransitionManager.beginDelayedTransition(container);
-//        formContainer.setVisibility(View.VISIBLE);
-//        loader.setVisibility(View.GONE);
-//    }
-
 
     @OnClick(R.id.fabProgressCircle)
     void nextActivity() {
@@ -161,8 +122,6 @@ public class LoginActivity extends AppCompatActivity {
 //        validation.clear();
 //
 //        if (validation.validate()) {
-
-
 //            call = apiService.login(email, password);
 //            call.enqueue(new Callback<AccessToken>() {
 //                @Override

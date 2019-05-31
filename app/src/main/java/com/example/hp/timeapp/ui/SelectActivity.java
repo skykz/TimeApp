@@ -10,9 +10,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.example.hp.timeapp.R;
-import com.example.hp.timeapp.TokenManager;
 import com.example.hp.timeapp.auth.LoginActivity;
-import com.example.hp.timeapp.networkAPI.ApiService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,9 +29,6 @@ private final String TAG = "SelectActivity";
 
     @BindView(R.id.button_user)
     Button getButton_user;
-//
-//    private ApiService apiService;
-//    private TokenManager tokenManager;
 
 
     @Override
@@ -42,15 +37,6 @@ private final String TAG = "SelectActivity";
         setContentView(R.layout.activity_select);
         ButterKnife.bind(this);
 
-//        tokenManager = TokenManager.getInstance(getSharedPreferences("preferences",MODE_PRIVATE));
-//
-//        apiService = RetrofitBuilder.createService(ApiService.class);
-//
-//        if (tokenManager.getToken().getAccessToken() != null)
-//        {
-//            startActivity(new Intent(SelectActivity.this,MainActivity.class));
-//            finish();
-//        }
 
         getButton_user.setOnClickListener(new View.OnClickListener() {
             @Override

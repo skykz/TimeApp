@@ -28,7 +28,6 @@ public class CustomSwipeAdapter extends PagerAdapter {
     public CustomSwipeAdapter(Context context, String [] list){
         this.context = context;
         this.list = list;
-
     }
 
     @Override
